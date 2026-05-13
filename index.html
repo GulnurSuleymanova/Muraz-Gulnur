@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding — Ronda 2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ─────────────────────────────────────
+           WELCOME
+        ───────────────────────────────────── */
+        .welcome-section {
+            background: #f5f0e8;
+            padding: 56px 20px 0;
+        }
+
+        .welcome-inner {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem;
+            color: #4a5c4a;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .welcome-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: rgba(74, 92, 74, 0.9);
+            font-style: italic;
+            padding: 0 4px;
+        }
+
+        /* ─────────────────────────────────────
+           GALLERY
+        ───────────────────────────────────── */
+        .gallery-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 10px;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+
+        .gallery-track:hover { animation-play-state: paused; }
+
+        .gallery-item {
+            flex-shrink: 0;
+            overflow: hidden;
+            height: 280px;
+            width: 196px;
+        }
+
+        .gallery-item img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        @keyframes marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ─────────────────────────────────────
+           DIVIDER
+        ───────────────────────────────────── */
+        .divider-section {
+            background: #f5f0e8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 52px 20px;
+        }
+
+        .divider-line {
+            width: 80px;
+            height: 1px;
+            background: rgba(74, 92, 74, 0.2);
+            margin-bottom: 32px;
+        }
+
+        .divider-img {
+            width: 112px;
+            height: auto;
+            opacity: 0.8;
+        }
+
+        /* ─────────────────────────────────────
+           COUNTDOWN
+        ───────────────────────────────────── */
+        .countdown-section {
+            background: #f5f0e8;
+            padding: 0 20px 64px;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem;
+            color: #4a5c4a;
+            font-weight: 400;
+            margin: 0 0 6px;
+        }
+
+        .countdown-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            color: rgba(74, 92, 74, 0.6);
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin: 0 0 36px;
+            font-weight: 300;
+        }
+
+        .countdown-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .countdown-unit { display: flex; align-items: center; }
+
+        .countdown-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 14px;
+        }
+
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #4a5c4a;
+            line-height: 1;
+            font-weight: 400;
+        }
+
+        .countdown-label {
+            margin-top: 8px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 9px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(180, 150, 80, 0.85);
+            font-weight: 300;
+        }
+
+        .countdown-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(74, 92, 74, 0.2);
+            margin: 0 2px 16px;
+        }
+
+        /* ─────────────────────────────────────
+           LOCATION
+        ───────────────────────────────────── */
+        .location-section {
+            background: #f5f0e8;
+            padding: 0 20px 64px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .location-card-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .location-frame-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .location-card {
+            position: relative;
+            z-index: 10;
+            margin: 16%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 20px 16px 0;
+            border-radius: 2.5rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .location-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-style: italic;
+            color: #4a5c4a;
+            margin-bottom: 12px;
+        }
+
+        .location-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.0625rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #4a5c4a;
+        }
+
+        .location-time {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+            color: rgba(74, 92, 74, 0.7);
+        }
+
+        .location-time svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+        .location-time span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .location-illustration {
+            margin: 16px -16px 0;
+            display: block;
+            width: calc(100% + 32px);
+        }
+
+        /* ─────────────────────────────────────
+           DRESS CODE
+        ───────────────────────────────────── */
+        .dresscode-section {
+            background: #f5f0e8;
+            padding: 0 20px 64px;
+        }
+
+        .dresscode-inner {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .dresscode-header { text-align: center; }
+
+        .dresscode-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-style: italic;
+            color: #4a5c4a;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .dresscode-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(74, 92, 74, 0.6);
+            font-weight: 300;
+        }
+
+        .dresscode-body { text-align: center; }
+
+        .dresscode-illustration {
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            margin-bottom: -2rem;
+            display: block;
+        }
+
+        .dresscode-card {
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 48px 24px 32px;
+            box-shadow: 0 4px 24px rgba(74, 92, 74, 0.08);
+            position: relative;
+            z-index: 0;
+        }
+
+        .dresscode-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: #4a5c4a;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .dresscode-card-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(74, 92, 74, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .dresscode-card-note {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            color: rgba(74, 92, 74, 0.7);
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .dresscode-card-note:last-child { margin-bottom: 0; }
+
+        /* ─────────────────────────────────────
+           ITINERARY
+        ───────────────────────────────────── */
+        .itinerary-section {
+            position: relative;
+            background: #f5f0e8;
+            padding: 80px 24px 112px;
+            overflow: hidden;
+        }
+
+        .curtain {
+            position: absolute;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .curtain-left {
+            width: 50%; top: 2%; left: -22%;
+            transform-origin: left top;
+            transform: rotate(-1.29deg);
+            z-index: 30;
+        }
+
+        .curtain-center {
+            width: 68%; top: 2.2%; left: 50%;
+            transform-origin: center top;
+            transform: translateX(-50%) rotate(0.007deg);
+            z-index: 40;
+        }
+
+        .curtain-right {
+            width: 50%; top: 2%; right: -22%;
+            transform-origin: right top;
+            transform: rotate(-1.44deg);
+            z-index: 30;
+        }
+
+        .itinerary-inner {
+            position: relative;
+            z-index: 20;
+            max-width: 260px;
+            margin: 0 auto;
+            padding-top: 128px;
+        }
+
+        .itinerary-header { text-align: center; margin-bottom: 64px; }
+
+        .itinerary-main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #3a3530;
+            font-weight: 400;
+            margin-bottom: 8px;
+            line-height: 1.15;
+        }
+
+        .itinerary-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(58, 53, 48, 0.5);
+            margin-bottom: 4px;
+        }
+
+        .itinerary-dates {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            color: rgba(58, 53, 48, 0.6);
+        }
+
+        .itinerary-event { margin-bottom: 64px; }
+
+        .itinerary-event-header { text-align: center; margin-bottom: 32px; }
+
+        .itinerary-event-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #3a3530;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .itinerary-event-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: rgba(58, 53, 48, 0.5);
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .itinerary-event-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(58, 53, 48, 0.6);
+            font-style: italic;
+            max-width: 300px;
+            margin: 0 auto 12px;
+        }
+
+        .itinerary-timeline { position: relative; padding-left: 24px; }
+
+        .timeline-item { position: relative; margin-bottom: 24px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: -23.5px; top: 0.5rem;
+            width: 1px; bottom: -24px;
+            background: rgba(58, 53, 48, 0.15);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -27px; top: 0.25rem;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(58, 53, 48, 0.3);
+        }
+
+        .timeline-time {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(58, 53, 48, 0.7);
+            margin-bottom: 4px;
+        }
+
+        .timeline-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            color: #3a3530;
+        }
+
+        .timeline-text.muted { color: rgba(58, 53, 48, 0.5); font-style: italic; }
+
+        .itinerary-candles { display: flex; justify-content: center; margin-top: 56px; margin-bottom: 8px; }
+        .itinerary-candles img { width: 160px; height: auto; pointer-events: none; user-select: none; }
+
+        .itinerary-event-relative { position: relative; }
+
+        .itinerary-vase {
+            position: absolute;
+            right: -48px; bottom: -16px;
+            width: 144px; height: auto;
+            pointer-events: none; user-select: none;
+        }
+
+        /* ─────────────────────────────────────
+           ORDER OF THE DAY
+        ───────────────────────────────────── */
+        .order-section {
+            position: relative;
+            background: #f5f0e8;
+            overflow: hidden;
+        }
+
+        .order-hero { display: flex; justify-content: center; padding-top: 64px; }
+        .order-hero img { width: 160px; height: auto; object-fit: contain; }
+
+        .order-header {
+            position: relative;
+            z-index: 10;
+            padding: 24px 24px 0;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .order-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-style: italic;
+            color: #4a5c4a;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .order-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(74, 92, 74, 0.6);
+            font-weight: 300;
+        }
+
+        .order-venue-wrapper { position: relative; margin-top: 64px; }
+        .order-venue-img { width: 100%; display: block; object-fit: contain; object-position: bottom; }
+
+        .order-timeline-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-bottom: 25%;
+            padding-left: 24px;
+            padding-right: 24px;
+            margin-top: -16px;
+        }
+
+        .order-timeline { display: flex; flex-direction: column; align-items: center; }
+
+        .order-step { display: flex; flex-direction: column; align-items: center; }
+
+        .order-step-content { text-align: center; padding: 4px 0; }
+
+        .order-step-time {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(74, 92, 74, 0.6);
+            margin-bottom: 4px;
+        }
+
+        .order-step-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.125rem;
+            color: #4a5c4a;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .order-step-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9375rem;
+            color: rgba(74, 92, 74, 0.8);
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .order-connector {
+            width: 1px;
+            height: 64px;
+            background: rgba(74, 92, 74, 0.3);
+            transform-origin: top;
+        }
+
+        /* ─────────────────────────────────────
+           FOOTER SECTIONS
+        ───────────────────────────────────── */
+        .footer-couple-section {
+            background: #cdc6b0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 48px;
+            padding-bottom: 0;
+        }
+
+        .footer-couple-section img.rings {
+            width: 96px;
+            height: auto;
+            margin-bottom: 16px;
+        }
+
+        .footer-couple-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.875rem;
+            font-style: italic;
+            color: #4a5c4a;
+            font-weight: 400;
+            margin-top: 8px;
+            margin-bottom: 4px;
+        }
+
+        .footer-couple-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.875rem;
+            letter-spacing: 0.08em;
+            color: rgba(74, 92, 74, 0.8);
+        }
+
+        .footer-ornament-section {
+            background: #cdc6b0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 48px;
+            padding-bottom: 0;
+        }
+
+        .footer-ornament-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.875rem;
+            font-style: italic;
+            color: #4a5c4a;
+            font-weight: 400;
+            margin-top: 8px;
+            margin-bottom: 4px;
+        }
+
+        .footer-ornament-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.875rem;
+            letter-spacing: 0.08em;
+            color: rgba(74, 92, 74, 0.8);
+        }
+
+        .footer-ornament-section img.ornament {
+            width: 280px;
+            height: auto;
+            margin-top: 32px;
+            display: block;
+        }
+
+        /* ─────────────────────────────────────
+           COUPLE PHOTO
+        ───────────────────────────────────── */
+        .couple-photo-section {
+            width: 100%;
+        }
+
+        .couple-photo-section img {
+            width: 100%;
+            display: block;
+        }
+
+
+
+        /* ─────────────────────────────────────
+           RSVP
+        ───────────────────────────────────── */
+        .rsvp-section {
+            background-color: #cdc6b0;
+            padding: 32px 24px 0;
+        }
+
+        .rsvp-inner {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .rsvp-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .rsvp-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-style: italic;
+            color: #4a5c4a;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .rsvp-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(74, 92, 74, 0.6);
+            font-weight: 300;
+        }
+
+        /* Form */
+        .rsvp-form { display: flex; flex-direction: column; gap: 24px; }
+
+        .rsvp-field { display: flex; flex-direction: column; }
+
+        .rsvp-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #4a5c4a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .rsvp-label svg { width: 16px; height: 16px; }
+
+        .rsvp-input,
+        .rsvp-textarea {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            height: 40px;
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid rgba(74, 92, 74, 0.3);
+            background: #f5f0e8;
+            color: #4a5c4a;
+            padding: 0 12px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .rsvp-input::placeholder,
+        .rsvp-textarea::placeholder { color: rgba(74, 92, 74, 0.5); }
+
+        .rsvp-input:focus,
+        .rsvp-textarea:focus { border-color: #4a5c4a; }
+
+        .rsvp-textarea {
+            height: auto;
+            min-height: 80px;
+            padding: 10px 12px;
+            resize: vertical;
+        }
+
+        /* Radio group */
+        .rsvp-radio-group {
+            display: flex;
+            gap: 24px;
+            margin-top: 4px;
+        }
+
+        .rsvp-radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .rsvp-radio-option input[type="radio"] {
+            accent-color: #4a5c4a;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .rsvp-radio-option label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9375rem;
+            color: #4a5c4a;
+            cursor: pointer;
+        }
+
+        /* Checkbox */
+        .rsvp-checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .rsvp-checkbox-option input[type="checkbox"] {
+            accent-color: #4a5c4a;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .rsvp-checkbox-option label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9375rem;
+            color: #4a5c4a;
+            cursor: pointer;
+        }
+
+        /* Companions */
+        .rsvp-companions-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #4a5c4a;
+            margin-bottom: 6px;
+        }
+
+        .rsvp-companions-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.875rem;
+            color: rgba(74, 92, 74, 0.7);
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+
+        .rsvp-companions-btns {
+            display: flex;
+            gap: 12px;
+        }
+
+        .rsvp-add-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            height: 36px;
+            padding: 0 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(74, 92, 74, 0.4);
+            background: #f5f0e8;
+            color: #4a5c4a;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .rsvp-add-btn:hover { background: rgba(74, 92, 74, 0.1); }
+        .rsvp-add-btn svg { width: 12px; height: 12px; }
+
+        /* Companions list */
+        .companions-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+
+        .companion-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .companion-row input {
+            flex: 1;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9375rem;
+            height: 36px;
+            border-radius: 6px;
+            border: 1px solid rgba(74, 92, 74, 0.3);
+            background: #f5f0e8;
+            color: #4a5c4a;
+            padding: 0 10px;
+            outline: none;
+        }
+
+        .companion-row input:focus { border-color: #4a5c4a; }
+
+        .companion-tag {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.75rem;
+            color: rgba(74, 92, 74, 0.6);
+            white-space: nowrap;
+        }
+
+        .companion-remove {
+            background: none;
+            border: none;
+            color: rgba(74, 92, 74, 0.5);
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        .companion-remove:hover { color: #4a5c4a; }
+        .companion-remove svg { width: 14px; height: 14px; }
+
+        /* Submit button */
+        .rsvp-submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            height: 40px;
+            background: #4a5c4a;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .rsvp-submit:hover { background: rgba(74, 92, 74, 0.9); }
+        .rsvp-submit svg { width: 16px; height: 16px; }
+    </style>
+</head>
+<body>
+
+    <!-- ── WELCOME ── -->
+    <section class="welcome-section">
+        <div class="welcome-inner">
+            <h2 class="welcome-title">Welcome!</h2>
+            <p class="welcome-text">
+                We warmly invite you to celebrate our wedding day with us
+                in the beautiful town of Ronda, Andalusia. We look forward
+                to sharing this unforgettable moment with our most special people.
+            </p>
+        </div>
+        <div class="gallery-wrapper">
+            <div class="gallery-track">
+                <div class="gallery-item"><img src="assets/gallery-1.jpg" alt="" style="object-position: center 20%;"></div>
+                <div class="gallery-item"><img src="assets/gallery-2.jpg" alt="" style="object-position: center 55%;"></div>
+                <div class="gallery-item"><img src="assets/gallery-3.jpg" alt="" style="object-position: center 30%;"></div>
+                <div class="gallery-item"><img src="assets/gallery-4.jpg" alt="" style="object-position: center 40%;"></div>
+                <div class="gallery-item"><img src="assets/gallery-5.jpg" alt="" style="object-position: center 35%;"></div>
+                <div class="gallery-item"><img src="assets/gallery-1.jpg" alt="" style="object-position: center 20%;"></div>
+                <div class="gallery-item"><img src="assets/gallery-2.jpg" alt="" style="object-position: center 55%;"></div>
+                <div class="gallery-item"><img src="assets/gallery-3.jpg" alt="" style="object-position: center 30%;"></div>
+                <div class="gallery-item"><img src="assets/gallery-4.jpg" alt="" style="object-position: center 40%;"></div>
+                <div class="gallery-item"><img src="assets/gallery-5.jpg" alt="" style="object-position: center 35%;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── DIVIDER ── -->
+    <div class="divider-section">
+        <div class="divider-line"></div>
+        <img src="assets/floral-vase-6x28LN74.png" alt="" class="divider-img">
+    </div>
+
+    <!-- ── COUNTDOWN ── -->
+    <section class="countdown-section">
+        <h2 class="countdown-title">Countdown</h2>
+        <p class="countdown-subtitle">Until 15 June 2026</p>
+        <div class="countdown-wrapper">
+            <div class="countdown-unit">
+                <div class="countdown-block">
+                    <span class="countdown-number" id="days">--</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-divider"></div>
+            </div>
+            <div class="countdown-unit">
+                <div class="countdown-block">
+                    <span class="countdown-number" id="hours">--</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-divider"></div>
+            </div>
+            <div class="countdown-unit">
+                <div class="countdown-block">
+                    <span class="countdown-number" id="minutes">--</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-divider"></div>
+            </div>
+            <div class="countdown-unit">
+                <div class="countdown-block">
+                    <span class="countdown-number" id="seconds">--</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── LOCATION ── -->
+    <section class="location-section">
+        <div class="location-card-wrapper">
+            <img src="assets/ornate-frame-new-Dtm38pwt.png" alt="" class="location-frame-img">
+            <div class="location-card">
+                <h3 class="location-title">Location</h3>
+                <div style="margin-bottom: 16px;">
+                    <p class="location-name">Villa Montalcino</p>
+                    <div class="location-time">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>From 17:00 to 02:00</span>
+                    </div>
+                </div>
+                <img src="assets/finca-biniagual-illustration-v5DD0Tq2.png"
+                     alt="Villa Montalcino - Watercolour illustration"
+                     class="location-illustration">
+            </div>
+        </div>
+    </section>
+
+    <!-- ── DRESS CODE ── -->
+    <section class="dresscode-section">
+        <div class="dresscode-inner">
+            <div class="dresscode-header">
+                <h2 class="dresscode-title">Dress Code</h2>
+                <p class="dresscode-subtitle">A few gentle reminders</p>
+            </div>
+            <div class="dresscode-body">
+                <img src="assets/dress-code-illustration-sBv8miCU.png"
+                     alt="Elegant guests illustration"
+                     class="dresscode-illustration">
+                <div class="dresscode-card">
+                    <h3 class="dresscode-card-title">Formal Attire</h3>
+                    <p class="dresscode-card-text">
+                        We kindly ask you to dress formally to join us on this very special day.
+                    </p>
+                    <p class="dresscode-card-note">
+                        Please avoid wearing white — it is reserved for the bride.
+                    </p>
+                    <p class="dresscode-card-note">
+                        We recommend ladies avoid stiletto heels. The celebration takes place on a country estate with uneven terrain, so wedges, block heels, low heels, or flats will be much more comfortable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- ── ORDER OF THE DAY ── -->
+    <section class="order-section">
+        <div class="order-hero">
+            <img src="assets/couple-dancing-XNVWWZw7.png" alt="Couple dancing illustration">
+        </div>
+        <div class="order-header">
+            <h2 class="order-title">Order of the Day</h2>
+            <p class="order-subtitle">What we have planned for you</p>
+        </div>
+        <div class="order-venue-wrapper">
+            <img src="assets/entrada-venue-Cvj9q4nP.png" alt="Venue entrance" class="order-venue-img">
+            <div class="order-timeline-overlay">
+                <div class="order-timeline">
+                    <div class="order-step">
+                        <div class="order-step-content">
+                            <p class="order-step-time">17:00</p>
+                            <h3 class="order-step-title">Arrival &amp; Welcome Drinks</h3>
+                            <p class="order-step-desc">Reception and welcome cocktails at the villa</p>
+                        </div>
+                    </div>
+                    <div class="order-connector"></div>
+                    <div class="order-step">
+                        <div class="order-step-content">
+                            <h3 class="order-step-title">Ceremony</h3>
+                            <p class="order-step-desc">The most special moment of the day</p>
+                        </div>
+                    </div>
+                    <div class="order-connector"></div>
+                    <div class="order-step">
+                        <div class="order-step-content">
+                            <h3 class="order-step-title">Cocktail Hour &amp; Dinner</h3>
+                            <p class="order-step-desc">Al fresco dining under the stars</p>
+                        </div>
+                    </div>
+                    <div class="order-connector"></div>
+                    <div class="order-step">
+                        <div class="order-step-content">
+                            <h3 class="order-step-title">Party</h3>
+                            <p class="order-step-desc">Let's dance the night away!</p>
+                        </div>
+                    </div>
+                    <div class="order-connector"></div>
+                    <div class="order-step">
+                        <div class="order-step-content">
+                            <h3 class="order-step-title">Last Dance</h3>
+                            <p class="order-step-desc">Farewell and&#10;beautiful memories</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── COUPLE PHOTO ── -->
+    <section class="couple-photo-section">
+        <img src="assets/framed-couple-photo-new-DNfIj9eQ.png" alt="Mar y Jaume">
+    </section>
+
+    <!-- ── RSVP ── -->
+    <section class="rsvp-section" id="rsvp">
+        <div class="rsvp-inner">
+            <div class="rsvp-header">
+                <h2 class="rsvp-title">RSVP</h2>
+                <p class="rsvp-subtitle">We hope you can make it</p>
+            </div>
+
+            <form class="rsvp-form" onsubmit="handleRsvp(event)">
+
+                <div class="rsvp-field">
+                    <label class="rsvp-label">Will you attend? *</label>
+                    <div class="rsvp-radio-group">
+                        <div class="rsvp-radio-option">
+                            <input type="radio" id="attend-yes" name="attendance" value="yes" checked>
+                            <label for="attend-yes">Yes, I'll be there</label>
+                        </div>
+                        <div class="rsvp-radio-option">
+                            <input type="radio" id="attend-no" name="attendance" value="no">
+                            <label for="attend-no">Sorry, I can't make it</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full name -->
+                <div class="rsvp-field">
+                    <label class="rsvp-label" for="rsvp-name">Full name *</label>
+                    <input class="rsvp-input" type="text" id="rsvp-name" required
+                           placeholder="Your full name" maxlength="100">
+                </div>
+
+                <!-- Allergies -->
+                <div class="rsvp-field">
+                    <label class="rsvp-label" for="rsvp-allergies">Allergies or dietary requirements</label>
+                    <input class="rsvp-input" type="text" id="rsvp-allergies"
+                           placeholder="e.g. gluten-free, lactose intolerant..." maxlength="300">
+                </div>
+
+                <!-- Phone -->
+                <div class="rsvp-field">
+                    <label class="rsvp-label" for="rsvp-phone">Contact phone *</label>
+                    <input class="rsvp-input" type="tel" id="rsvp-phone" required
+                           placeholder="+44 7700 900000" maxlength="20">
+                </div>
+
+                <!-- Companions -->
+                <div class="rsvp-field">
+                    <p class="rsvp-companions-label">Companions</p>
+                    <p class="rsvp-companions-desc">Add the people joining you and note any allergies they may have.</p>
+                    <div class="rsvp-companions-btns">
+                        <button type="button" class="rsvp-add-btn" onclick="addCompanion('Adult')">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"></path><path d="M12 5v14"></path>
+                            </svg>
+                            Adult
+                        </button>
+                        <button type="button" class="rsvp-add-btn" onclick="addCompanion('Child')">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"></path><path d="M12 5v14"></path>
+                            </svg>
+                            Child
+                        </button>
+                    </div>
+                    <div class="companions-list" id="companions-list"></div>
+                </div>
+
+                <!-- Transport -->
+                <div class="rsvp-checkbox-option">
+                    <input type="checkbox" id="rsvp-transport">
+                    <label for="rsvp-transport">I need transport to the venue</label>
+                </div>
+
+                <!-- Accommodation -->
+                <div class="rsvp-field">
+                    <label class="rsvp-label" for="rsvp-accommodation">Hotel / Accommodation / Area</label>
+                    <input class="rsvp-input" type="text" id="rsvp-accommodation"
+                           placeholder="e.g. Hotel Borgo Antico, Montalcino area..." maxlength="200">
+                </div>
+
+                <!-- Song -->
+                <div class="rsvp-field">
+                    <label class="rsvp-label" for="rsvp-song">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18V5l12-2v13"></path>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <circle cx="18" cy="16" r="3"></circle>
+                        </svg>
+                        Song you'd love to hear
+                    </label>
+                    <input class="rsvp-input" type="text" id="rsvp-song"
+                           placeholder="e.g. Viva la Vida - Coldplay" maxlength="200">
+                </div>
+
+                <!-- Message -->
+                <div class="rsvp-field">
+                    <label class="rsvp-label" for="rsvp-message">Message for the couple (optional)</label>
+                    <textarea class="rsvp-textarea" id="rsvp-message"
+                              placeholder="Write us a few words..." rows="3" maxlength="1000"></textarea>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="rsvp-submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path>
+                        <path d="m21.854 2.147-10.94 10.939"></path>
+                    </svg>
+                    Send RSVP
+                </button>
+
+            </form>
+        </div>
+    </section>
+
+    <!-- ── FOOTER: RINGS + COUPLE NAME ── -->
+    <div class="footer-couple-section">
+        <img src="assets/rings-illustration-tO3OeALU.png" alt="Rings" class="rings">
+        <p class="footer-couple-names">Lucía &amp; Felipe</p>
+        <p class="footer-couple-date">September 18, 2027</p>
+    </div>
+
+    <!-- ── FOOTER: NAME + ORNAMENT ── -->
+    <div class="footer-ornament-section">
+        <p class="footer-ornament-names">Elisa &amp; Jhon</p>
+        <p class="footer-ornament-date">September 18, 2027</p>
+        <img src="assets/footer-ornament-doM17sdI.png" alt="Ornament" class="ornament">
+    </div>
+
+
+    <script>
+        /* ── Countdown ── */
+        function updateCountdown() {
+            const target = new Date('2026-06-15T00:00:00');
+            const diff   = target - new Date();
+
+            if (diff <= 0) {
+                ['days','hours','minutes','seconds'].forEach(id =>
+                    document.getElementById(id).textContent = id === 'days' ? '0' : '00');
+                return;
+            }
+
+            const days    = Math.floor(diff / 864e5);
+            const hours   = Math.floor((diff % 864e5) / 36e5);
+            const minutes = Math.floor((diff % 36e5) / 6e4);
+            const seconds = Math.floor((diff % 6e4) / 1e3);
+
+            document.getElementById('days').textContent    = days;
+            document.getElementById('hours').textContent   = String(hours).padStart(2,'0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        /* ── Companions ── */
+        let companionCount = 0;
+
+        function addCompanion(type) {
+            companionCount++;
+            const list = document.getElementById('companions-list');
+            const row  = document.createElement('div');
+            row.className = 'companion-row';
+            row.dataset.id = companionCount;
+            row.innerHTML = `
+                <input type="text" placeholder="${type} name" maxlength="100">
+                <input type="text" placeholder="Allergies (optional)" maxlength="200">
+                <span class="companion-tag">${type}</span>
+                <button type="button" class="companion-remove" onclick="removeCompanion(${companionCount})">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                    </svg>
+                </button>`;
+            list.appendChild(row);
+        }
+
+        function removeCompanion(id) {
+            const row = document.querySelector(`.companion-row[data-id="${id}"]`);
+            if (row) row.remove();
+        }
+
+        /* ── RSVP submit ── */
+        function handleRsvp(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.rsvp-submit');
+            btn.textContent = '✓ RSVP Sent!';
+            btn.style.background = '#6b8f6b';
+            btn.disabled = true;
+        }
+    </script>
+
+</body>
+</html>
