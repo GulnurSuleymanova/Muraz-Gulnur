@@ -1,16 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="az">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding — Ronda 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Muraz & Gülnur — 15 İyun 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ivory: '#f5f0e8',
+                        gold: '#b49650',
+                        'sage-dark': '#4a5c4a',
+                    },
+                    fontFamily: {
+                        script: ['"Playfair Display"', 'serif'],
+                        body: ['"Cormorant Garamond"', 'serif'],
+                    },
+                },
+            },
+        }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
-        * {
+        :root {
+            --foreground: 74 92 74;
+            --gold-soft: 180 150 80;
+        }
+        .dark {
+            --foreground: 245 240 232;
+            --gold-soft: 180 150 80;
+        }
+        .text-foreground { color: hsl(var(--foreground)); }
+        .text-foreground\/80 { color: hsl(var(--foreground) / 0.8); }
+        .text-foreground\/70 { color: hsl(var(--foreground) / 0.7); }
+        .text-gold { color: #b49650; }
+        .bg-ivory { background-color: #f5f0e8; }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(245, 240, 232, 0.25);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .dark .hero-overlay {
+            background: rgba(20, 20, 20, 0.4);
+        }
+        body.dark { background: #1a1a18; }
+        body.dark .welcome-section,
+        body.dark .divider-section,
+        body.dark .countdown-section,
+        body.dark .location-section,
+        body.dark .dresscode-section,
+        body.dark .order-section,
+        body.dark .media-section,
+        body.dark .itinerary-section { background: #1f1e1a; }
+        body.dark .welcome-title,
+        body.dark .countdown-title,
+        body.dark .location-title,
+        body.dark .location-name,
+        body.dark .dresscode-title,
+        body.dark .dresscode-card-title,
+        body.dark .order-title,
+        body.dark .order-step-title,
+        body.dark .media-title { color: #f0ebe0; }
+        body.dark .welcome-text,
+        body.dark .dresscode-card-text,
+        body.dark .dresscode-card-note { color: rgba(240,235,224,0.75); }
+        body.dark .dresscode-card { background: #2a2924; }
+        body.dark .media-link-box { background: #2a2924; }
+        body.dark .rsvp-section { background: #2a2924; }
+        body.dark .footer-ornament-section { background: #2a2924; }
+
+
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ── HERO ── */
+        .hero-image-section {
+            width: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            line-height: 0;
+        }
+        .hero-image-section img {
+            width: 100%;
+            display: block;
         }
 
         /* ─────────────────────────────────────
@@ -18,26 +117,29 @@
         ───────────────────────────────────── */
         .welcome-section {
             background: #f5f0e8;
-            padding: 56px 20px 0;
+            padding: clamp(32px, 8vw, 56px) clamp(16px, 5vw, 24px) 0;
         }
 
         .welcome-inner {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: clamp(24px, 5vw, 40px);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .welcome-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.25rem;
+            font-size: clamp(1.6rem, 6vw, 2.25rem);
             color: #4a5c4a;
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: clamp(14px, 4vw, 20px);
         }
 
         .welcome-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.0625rem;
-            line-height: 1.8;
+            font-size: clamp(0.9rem, 3.5vw, 1.0625rem);
+            line-height: 1.85;
             color: rgba(74, 92, 74, 0.9);
             font-style: italic;
             padding: 0 4px;
@@ -53,7 +155,7 @@
 
         .gallery-track {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             width: max-content;
             animation: marquee 28s linear infinite;
         }
@@ -63,8 +165,8 @@
         .gallery-item {
             flex-shrink: 0;
             overflow: hidden;
-            height: 280px;
-            width: 196px;
+            height: clamp(160px, 40vw, 280px);
+            width: clamp(112px, 28vw, 196px);
         }
 
         .gallery-item img {
@@ -89,18 +191,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 52px 20px;
+            padding: clamp(32px, 8vw, 52px) 20px;
         }
 
         .divider-line {
             width: 80px;
             height: 1px;
             background: rgba(74, 92, 74, 0.2);
-            margin-bottom: 32px;
+            margin-bottom: clamp(20px, 5vw, 32px);
         }
 
         .divider-img {
-            width: 112px;
+            width: clamp(72px, 20vw, 112px);
             height: auto;
             opacity: 0.8;
         }
@@ -110,13 +212,13 @@
         ───────────────────────────────────── */
         .countdown-section {
             background: #f5f0e8;
-            padding: 0 20px 64px;
+            padding: 0 clamp(12px, 4vw, 20px) clamp(40px, 10vw, 64px);
             text-align: center;
         }
 
         .countdown-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.25rem;
+            font-size: clamp(1.6rem, 6vw, 2.25rem);
             color: #4a5c4a;
             font-weight: 400;
             margin: 0 0 6px;
@@ -125,10 +227,10 @@
         .countdown-subtitle {
             font-family: 'Cormorant Garamond', serif;
             color: rgba(74, 92, 74, 0.6);
-            font-size: 11px;
+            font-size: clamp(9px, 2.5vw, 11px);
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            margin: 0 0 36px;
+            margin: 0 0 clamp(20px, 6vw, 36px);
             font-weight: 300;
         }
 
@@ -136,6 +238,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            flex-wrap: nowrap;
         }
 
         .countdown-unit { display: flex; align-items: center; }
@@ -144,12 +247,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0 14px;
+            padding: 0 clamp(6px, 2.5vw, 14px);
         }
 
         .countdown-number {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 8vw, 2.5rem);
             color: #4a5c4a;
             line-height: 1;
             font-weight: 400;
@@ -158,7 +261,7 @@
         .countdown-label {
             margin-top: 8px;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 9px;
+            font-size: clamp(7px, 2vw, 9px);
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: rgba(180, 150, 80, 0.85);
@@ -177,7 +280,7 @@
         ───────────────────────────────────── */
         .location-section {
             background: #f5f0e8;
-            padding: 0 20px 64px;
+            padding: 0 clamp(12px, 4vw, 20px) clamp(40px, 10vw, 64px);
             display: flex;
             justify-content: center;
         }
@@ -205,7 +308,7 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
-            padding: 20px 16px 0;
+            padding: clamp(14px, 4vw, 20px) clamp(12px, 3vw, 16px) 0;
             border-radius: 2.5rem;
             text-align: center;
             overflow: hidden;
@@ -213,7 +316,7 @@
 
         .location-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: clamp(1.4rem, 5vw, 2rem);
             font-style: italic;
             color: #4a5c4a;
             margin-bottom: 12px;
@@ -221,7 +324,7 @@
 
         .location-name {
             font-family: 'Playfair Display', serif;
-            font-size: 1.0625rem;
+            font-size: clamp(0.8rem, 3vw, 1.0625rem);
             text-transform: uppercase;
             letter-spacing: 0.18em;
             color: #4a5c4a;
@@ -240,7 +343,7 @@
 
         .location-time span {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.875rem;
+            font-size: clamp(0.75rem, 3vw, 0.875rem);
             font-weight: 600;
         }
 
@@ -255,7 +358,7 @@
         ───────────────────────────────────── */
         .dresscode-section {
             background: #f5f0e8;
-            padding: 0 20px 64px;
+            padding: 0 clamp(12px, 4vw, 20px) clamp(40px, 10vw, 64px);
         }
 
         .dresscode-inner {
@@ -267,7 +370,7 @@
 
         .dresscode-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 7vw, 2.5rem);
             font-style: italic;
             color: #4a5c4a;
             font-weight: 400;
@@ -276,11 +379,12 @@
 
         .dresscode-subtitle {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 11px;
+            font-size: clamp(9px, 2.5vw, 11px);
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: rgba(74, 92, 74, 0.6);
             font-weight: 300;
+            line-height: 1.6;
         }
 
         .dresscode-body { text-align: center; }
@@ -296,7 +400,7 @@
         .dresscode-card {
             background: #ffffff;
             border-radius: 2rem;
-            padding: 48px 24px 32px;
+            padding: clamp(36px, 10vw, 48px) clamp(16px, 5vw, 24px) clamp(20px, 5vw, 32px);
             box-shadow: 0 4px 24px rgba(74, 92, 74, 0.08);
             position: relative;
             z-index: 0;
@@ -304,7 +408,7 @@
 
         .dresscode-card-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 4vw, 1.25rem);
             color: #4a5c4a;
             font-weight: 400;
             margin-bottom: 8px;
@@ -312,7 +416,7 @@
 
         .dresscode-card-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
+            font-size: clamp(0.875rem, 3.5vw, 1rem);
             line-height: 1.7;
             color: rgba(74, 92, 74, 0.7);
             margin-bottom: 20px;
@@ -320,7 +424,7 @@
 
         .dresscode-card-note {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9375rem;
+            font-size: clamp(0.8125rem, 3.2vw, 0.9375rem);
             line-height: 1.7;
             color: rgba(74, 92, 74, 0.7);
             font-style: italic;
@@ -328,162 +432,6 @@
         }
 
         .dresscode-card-note:last-child { margin-bottom: 0; }
-
-        /* ─────────────────────────────────────
-           ITINERARY
-        ───────────────────────────────────── */
-        .itinerary-section {
-            position: relative;
-            background: #f5f0e8;
-            padding: 80px 24px 112px;
-            overflow: hidden;
-        }
-
-        .curtain {
-            position: absolute;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .curtain-left {
-            width: 50%; top: 2%; left: -22%;
-            transform-origin: left top;
-            transform: rotate(-1.29deg);
-            z-index: 30;
-        }
-
-        .curtain-center {
-            width: 68%; top: 2.2%; left: 50%;
-            transform-origin: center top;
-            transform: translateX(-50%) rotate(0.007deg);
-            z-index: 40;
-        }
-
-        .curtain-right {
-            width: 50%; top: 2%; right: -22%;
-            transform-origin: right top;
-            transform: rotate(-1.44deg);
-            z-index: 30;
-        }
-
-        .itinerary-inner {
-            position: relative;
-            z-index: 20;
-            max-width: 260px;
-            margin: 0 auto;
-            padding-top: 128px;
-        }
-
-        .itinerary-header { text-align: center; margin-bottom: 64px; }
-
-        .itinerary-main-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #3a3530;
-            font-weight: 400;
-            margin-bottom: 8px;
-            line-height: 1.15;
-        }
-
-        .itinerary-label {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 11px;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: rgba(58, 53, 48, 0.5);
-            margin-bottom: 4px;
-        }
-
-        .itinerary-dates {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            letter-spacing: 0.05em;
-            color: rgba(58, 53, 48, 0.6);
-        }
-
-        .itinerary-event { margin-bottom: 64px; }
-
-        .itinerary-event-header { text-align: center; margin-bottom: 32px; }
-
-        .itinerary-event-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #3a3530;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 6px;
-        }
-
-        .itinerary-event-date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            color: rgba(58, 53, 48, 0.5);
-            letter-spacing: 0.05em;
-            margin-bottom: 16px;
-        }
-
-        .itinerary-event-desc {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            line-height: 1.7;
-            color: rgba(58, 53, 48, 0.6);
-            font-style: italic;
-            max-width: 300px;
-            margin: 0 auto 12px;
-        }
-
-        .itinerary-timeline { position: relative; padding-left: 24px; }
-
-        .timeline-item { position: relative; margin-bottom: 24px; }
-        .timeline-item:last-child { margin-bottom: 0; }
-
-        .timeline-item:not(:last-child)::before {
-            content: '';
-            position: absolute;
-            left: -23.5px; top: 0.5rem;
-            width: 1px; bottom: -24px;
-            background: rgba(58, 53, 48, 0.15);
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: -27px; top: 0.25rem;
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: rgba(58, 53, 48, 0.3);
-        }
-
-        .timeline-time {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.8125rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: rgba(58, 53, 48, 0.7);
-            margin-bottom: 4px;
-        }
-
-        .timeline-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            letter-spacing: 0.05em;
-            color: #3a3530;
-        }
-
-        .timeline-text.muted { color: rgba(58, 53, 48, 0.5); font-style: italic; }
-
-        .itinerary-candles { display: flex; justify-content: center; margin-top: 56px; margin-bottom: 8px; }
-        .itinerary-candles img { width: 160px; height: auto; pointer-events: none; user-select: none; }
-
-        .itinerary-event-relative { position: relative; }
-
-        .itinerary-vase {
-            position: absolute;
-            right: -48px; bottom: -16px;
-            width: 144px; height: auto;
-            pointer-events: none; user-select: none;
-        }
 
         /* ─────────────────────────────────────
            ORDER OF THE DAY
@@ -494,20 +442,20 @@
             overflow: hidden;
         }
 
-        .order-hero { display: flex; justify-content: center; padding-top: 64px; }
-        .order-hero img { width: 160px; height: auto; object-fit: contain; }
+        .order-hero { display: flex; justify-content: center; padding-top: clamp(40px, 10vw, 64px); }
+        .order-hero img { width: clamp(100px, 30vw, 160px); height: auto; object-fit: contain; }
 
         .order-header {
             position: relative;
             z-index: 10;
-            padding: 24px 24px 0;
+            padding: clamp(16px, 4vw, 24px) clamp(16px, 4vw, 24px) 0;
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: clamp(16px, 4vw, 24px);
         }
 
         .order-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 7vw, 2.5rem);
             font-style: italic;
             color: #4a5c4a;
             font-weight: 400;
@@ -516,14 +464,14 @@
 
         .order-subtitle {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 11px;
+            font-size: clamp(9px, 2.5vw, 11px);
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: rgba(74, 92, 74, 0.6);
             font-weight: 300;
         }
 
-        .order-venue-wrapper { position: relative; margin-top: 64px; }
+        .order-venue-wrapper { position: relative; margin-top: clamp(40px, 10vw, 64px); }
         .order-venue-img { width: 100%; display: block; object-fit: contain; object-position: bottom; }
 
         .order-timeline-overlay {
@@ -535,8 +483,8 @@
             align-items: center;
             justify-content: flex-start;
             padding-bottom: 25%;
-            padding-left: 24px;
-            padding-right: 24px;
+            padding-left: clamp(12px, 4vw, 24px);
+            padding-right: clamp(12px, 4vw, 24px);
             margin-top: -16px;
         }
 
@@ -548,7 +496,7 @@
 
         .order-step-time {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.75rem;
+            font-size: clamp(0.65rem, 2.5vw, 0.75rem);
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: rgba(74, 92, 74, 0.6);
@@ -557,7 +505,7 @@
 
         .order-step-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.125rem;
+            font-size: clamp(0.875rem, 3.5vw, 1.125rem);
             color: #4a5c4a;
             font-weight: 500;
             margin-bottom: 4px;
@@ -565,7 +513,7 @@
 
         .order-step-desc {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9375rem;
+            font-size: clamp(0.75rem, 3vw, 0.9375rem);
             color: rgba(74, 92, 74, 0.8);
             line-height: 1.5;
             white-space: pre-line;
@@ -573,114 +521,153 @@
 
         .order-connector {
             width: 1px;
-            height: 64px;
+            height: clamp(40px, 10vw, 64px);
             background: rgba(74, 92, 74, 0.3);
             transform-origin: top;
         }
 
         /* ─────────────────────────────────────
-           FOOTER SECTIONS
+           MEDIA SHARING SECTION
         ───────────────────────────────────── */
-        .footer-couple-section {
-            background: #cdc6b0;
+        .media-section {
+            background: #f5f0e8;
+            padding: clamp(40px, 10vw, 72px) clamp(16px, 5vw, 24px) clamp(48px, 12vw, 80px);
+        }
+
+        .media-inner {
+            max-width: 480px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .media-icon {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 48px;
-            padding-bottom: 0;
+            justify-content: center;
+            margin-bottom: clamp(16px, 4vw, 24px);
         }
 
-        .footer-couple-section img.rings {
-            width: 96px;
-            height: auto;
-            margin-bottom: 16px;
+        .media-icon svg {
+            width: clamp(40px, 10vw, 56px);
+            height: clamp(40px, 10vw, 56px);
+            color: #4a5c4a;
+            opacity: 0.7;
         }
 
-        .footer-couple-names {
+        .media-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.875rem;
+            font-size: clamp(1.6rem, 6vw, 2.25rem);
             font-style: italic;
             color: #4a5c4a;
             font-weight: 400;
-            margin-top: 8px;
-            margin-bottom: 4px;
+            margin-bottom: clamp(16px, 4vw, 24px);
+            line-height: 1.2;
         }
 
-        .footer-couple-date {
+        .media-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.875rem;
-            letter-spacing: 0.08em;
-            color: rgba(74, 92, 74, 0.8);
+            font-size: clamp(0.9rem, 3.5vw, 1.0625rem);
+            line-height: 1.85;
+            color: rgba(74, 92, 74, 0.85);
+            margin-bottom: clamp(24px, 6vw, 36px);
         }
 
-        .footer-ornament-section {
-            background: #cdc6b0;
+        .media-text em { font-style: italic; }
+
+        .media-divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(74, 92, 74, 0.25);
+            margin: 0 auto clamp(20px, 5vw, 28px);
+        }
+
+        .media-link-box {
+            background: #ffffff;
+            border-radius: 1.25rem;
+            padding: clamp(20px, 5vw, 28px) clamp(16px, 4vw, 24px);
+            box-shadow: 0 4px 24px rgba(74, 92, 74, 0.08);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 48px;
-            padding-bottom: 0;
+            gap: 12px;
         }
 
-        .footer-ornament-names {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.875rem;
-            font-style: italic;
-            color: #4a5c4a;
-            font-weight: 400;
-            margin-top: 8px;
-            margin-bottom: 4px;
-        }
-
-        .footer-ornament-date {
+        .media-link-label {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.875rem;
-            letter-spacing: 0.08em;
-            color: rgba(74, 92, 74, 0.8);
+            font-size: clamp(9px, 2.5vw, 11px);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(74, 92, 74, 0.55);
+            font-weight: 300;
         }
 
-        .footer-ornament-section img.ornament {
-            width: 280px;
-            height: auto;
-            margin-top: 32px;
-            display: block;
+        .media-link-placeholder {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(0.875rem, 3.5vw, 1rem);
+            color: rgba(74, 92, 74, 0.5);
+            font-style: italic;
+            background: rgba(74, 92, 74, 0.06);
+            border: 1.5px dashed rgba(74, 92, 74, 0.25);
+            border-radius: 0.75rem;
+            padding: clamp(10px, 3vw, 14px) clamp(16px, 4vw, 24px);
+            width: 100%;
+            text-align: center;
+            word-break: break-all;
+        }
+
+        .media-upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #4a5c4a;
+            color: #ffffff;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(0.875rem, 3.5vw, 1rem);
+            font-weight: 600;
+            border: none;
+            border-radius: 0.75rem;
+            padding: clamp(10px, 3vw, 13px) clamp(20px, 5vw, 28px);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .media-upload-btn:hover {
+            background: rgba(74, 92, 74, 0.85);
+            transform: translateY(-1px);
+        }
+
+        .media-upload-btn svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
         }
 
         /* ─────────────────────────────────────
            COUPLE PHOTO
         ───────────────────────────────────── */
-        .couple-photo-section {
-            width: 100%;
-        }
-
-        .couple-photo-section img {
-            width: 100%;
-            display: block;
-        }
-
-
+        .couple-photo-section { width: 100%; }
+        .couple-photo-section img { width: 100%; display: block; }
 
         /* ─────────────────────────────────────
            RSVP
         ───────────────────────────────────── */
         .rsvp-section {
             background-color: #cdc6b0;
-            padding: 32px 24px 0;
+            padding: clamp(24px, 6vw, 32px) clamp(16px, 5vw, 24px) 0;
         }
 
-        .rsvp-inner {
-            max-width: 480px;
-            margin: 0 auto;
-        }
+        .rsvp-inner { max-width: 480px; margin: 0 auto; }
 
         .rsvp-header {
             text-align: center;
-            margin-bottom: 48px;
+            margin-bottom: clamp(28px, 7vw, 48px);
         }
 
         .rsvp-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: clamp(2rem, 8vw, 3rem);
             font-style: italic;
             color: #4a5c4a;
             font-weight: 400;
@@ -689,21 +676,20 @@
 
         .rsvp-subtitle {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 11px;
+            font-size: clamp(9px, 2.5vw, 11px);
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: rgba(74, 92, 74, 0.6);
             font-weight: 300;
+            line-height: 1.6;
         }
 
-        /* Form */
-        .rsvp-form { display: flex; flex-direction: column; gap: 24px; }
-
+        .rsvp-form { display: flex; flex-direction: column; gap: clamp(16px, 4vw, 24px); }
         .rsvp-field { display: flex; flex-direction: column; }
 
         .rsvp-label {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.875rem;
+            font-size: clamp(0.8rem, 3vw, 0.875rem);
             font-weight: 600;
             color: #4a5c4a;
             margin-bottom: 8px;
@@ -712,13 +698,13 @@
             gap: 6px;
         }
 
-        .rsvp-label svg { width: 16px; height: 16px; }
+        .rsvp-label svg { width: 16px; height: 16px; flex-shrink: 0; }
 
         .rsvp-input,
         .rsvp-textarea {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            height: 40px;
+            font-size: clamp(0.9rem, 3.5vw, 1rem);
+            height: 44px;
             width: 100%;
             border-radius: 6px;
             border: 1px solid rgba(74, 92, 74, 0.3);
@@ -727,6 +713,8 @@
             padding: 0 12px;
             outline: none;
             transition: border-color 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .rsvp-input::placeholder,
@@ -737,16 +725,20 @@
 
         .rsvp-textarea {
             height: auto;
-            min-height: 80px;
+            min-height: 88px;
             padding: 10px 12px;
             resize: vertical;
         }
 
-        /* Radio group */
         .rsvp-radio-group {
             display: flex;
-            gap: 24px;
+            flex-direction: column;
+            gap: 12px;
             margin-top: 4px;
+        }
+
+        @media (min-width: 400px) {
+            .rsvp-radio-group { flex-direction: row; gap: 24px; }
         }
 
         .rsvp-radio-option {
@@ -758,150 +750,85 @@
 
         .rsvp-radio-option input[type="radio"] {
             accent-color: #4a5c4a;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             cursor: pointer;
+            flex-shrink: 0;
         }
 
         .rsvp-radio-option label {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9375rem;
+            font-size: clamp(0.875rem, 3.5vw, 0.9375rem);
             color: #4a5c4a;
             cursor: pointer;
         }
 
-        /* Checkbox */
-        .rsvp-checkbox-option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        .rsvp-checkbox-option input[type="checkbox"] {
-            accent-color: #4a5c4a;
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-
-        .rsvp-checkbox-option label {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9375rem;
-            color: #4a5c4a;
-            cursor: pointer;
-        }
-
-        /* Companions */
-        .rsvp-companions-label {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #4a5c4a;
-            margin-bottom: 6px;
-        }
-
-        .rsvp-companions-desc {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.875rem;
-            color: rgba(74, 92, 74, 0.7);
-            margin-bottom: 14px;
-            line-height: 1.5;
-        }
-
-        .rsvp-companions-btns {
-            display: flex;
-            gap: 12px;
-        }
-
-        .rsvp-add-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            height: 36px;
-            padding: 0 12px;
-            border-radius: 6px;
-            border: 1px solid rgba(74, 92, 74, 0.4);
-            background: #f5f0e8;
-            color: #4a5c4a;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .rsvp-add-btn:hover { background: rgba(74, 92, 74, 0.1); }
-        .rsvp-add-btn svg { width: 12px; height: 12px; }
-
-        /* Companions list */
-        .companions-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
-
-        .companion-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .companion-row input {
-            flex: 1;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9375rem;
-            height: 36px;
-            border-radius: 6px;
-            border: 1px solid rgba(74, 92, 74, 0.3);
-            background: #f5f0e8;
-            color: #4a5c4a;
-            padding: 0 10px;
-            outline: none;
-        }
-
-        .companion-row input:focus { border-color: #4a5c4a; }
-
-        .companion-tag {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.75rem;
-            color: rgba(74, 92, 74, 0.6);
-            white-space: nowrap;
-        }
-
-        .companion-remove {
-            background: none;
-            border: none;
-            color: rgba(74, 92, 74, 0.5);
-            cursor: pointer;
-            padding: 4px;
-            display: flex;
-            align-items: center;
-        }
-
-        .companion-remove:hover { color: #4a5c4a; }
-        .companion-remove svg { width: 14px; height: 14px; }
-
-        /* Submit button */
         .rsvp-submit {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             width: 100%;
-            height: 40px;
+            height: 48px;
             background: #4a5c4a;
             color: #ffffff;
             border: none;
             border-radius: 6px;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 3.5vw, 1rem);
             font-weight: 600;
             cursor: pointer;
             transition: background 0.2s;
+            -webkit-appearance: none;
+            touch-action: manipulation;
         }
 
         .rsvp-submit:hover { background: rgba(74, 92, 74, 0.9); }
         .rsvp-submit svg { width: 16px; height: 16px; }
+
+        /* ─────────────────────────────────────
+           FOOTER
+        ───────────────────────────────────── */
+        .footer-ornament-section {
+            background: #cdc6b0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: clamp(32px, 8vw, 48px);
+            padding-bottom: 0;
+        }
+
+        .footer-ornament-names {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 5vw, 1.875rem);
+            font-style: italic;
+            color: #4a5c4a;
+            font-weight: 400;
+            margin-top: 8px;
+            margin-bottom: 4px;
+        }
+
+        .footer-ornament-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(0.75rem, 3vw, 0.875rem);
+            letter-spacing: 0.08em;
+            color: rgba(74, 92, 74, 0.8);
+        }
+
+        .footer-ornament-section img.ornament {
+            width: clamp(180px, 70vw, 280px);
+            height: auto;
+            margin-top: 32px;
+            display: block;
+        }
     </style>
 </head>
 <body>
+
+    <!-- ── HERO IMAGE ── -->
+    <section class="hero-image-section">
+    <img src="assets/Gemini_Generated_Image_q3hcnaq3hcnaq3hc.png" alt="">
+    </section>
 
     <!-- ── WELCOME ── -->
     <section class="welcome-section">
@@ -915,7 +842,7 @@ Sizi Gəncə şəhərində keçiriləcək nişan mərasimimizə sevgi ilə dəv�
 Bir-birimizin əllərini tutaraq ürəklərimizi üzüklərlə birləşdirəcəyimiz bu gecədə, sevincimizi ən dəyərli insanlarımızla paylaşmağa səbirsizliklə hazırlaşırıq.
 
 Sizin sevginiz, gülüşünüz və xoş arzularınız bu gecəni bizim üçün daha da unudulmaz edəcək.
-           
+
 Bu gecə yalnız bir nişan deyil, sevgimizin ən gözəl xatirələrindən biri olacaq.</p>
         </div>
         <div class="gallery-wrapper">
@@ -984,8 +911,7 @@ Bu gecə yalnız bir nişan deyil, sevgimizin ən gözəl xatirələrindən biri
                 <div style="margin-bottom: 16px;">
                     <p class="location-name">İmperial Garden</p>
                     <div class="location-time">
-                        
-                        <span>15 İyun 2026 </br>  18:00 </span>
+                        <span>15 İyun 2026<br>18:00</span>
                     </div>
                 </div>
                 <img src="assets/finca-biniagual-illustration-v5DD0Tq2.png"
@@ -999,39 +925,31 @@ Bu gecə yalnız bir nişan deyil, sevgimizin ən gözəl xatirələrindən biri
     <section class="dresscode-section">
         <div class="dresscode-inner">
             <div class="dresscode-header">
-              <h2 class="dresscode-title">Geyim</h2>
-<p class="dresscode-subtitle">
-    Yay aylarının möhtəşəm rəng çalarlarından istifadə etməyiniz xahiş olunur
-</p>
-</div>
-
-<div class="dresscode-body">
-    <img src="assets/dress-code-illustration-sBv8miCU.png"
-         alt="Zərif qonaqlar illüstrasiyası"
-         class="dresscode-illustration">
-
-    <div class="dresscode-card">
-        <h3 class="dresscode-card-title">Yay Zərifliyi</h3>
-
-        <p class="dresscode-card-text">
-            Bu xüsusi günümüzdə sizin yay fəslinin canlı və gözəl rənglərini əks etdirən zərif geyimlərdə olmağınızı çox arzu edirik.
-        </p>
-
-        <p class="dresscode-card-note">
-            Gün ərzində bol rəqs və unudulmaz anlar olacaq, buna görə də hərəkət etməyə rahat imkan verən geyimlər seçməyiniz tövsiyə olunur.
-        </p>
-
-        <p class="dresscode-card-note">
-            Rahatlığınızı nəzərə alaraq, həm geyim, həm də ayaqqabı seçimində yüngül, komfortlu və sərbəst hərəkət etməyə imkan verən variantlara üstünlük verməyinizi xahiş edirik.
-        </p>
-    </div>
-</div>
+                <h2 class="dresscode-title">Geyim</h2>
+                <p class="dresscode-subtitle">
+                    Yay aylarının möhtəşəm rəng çalarlarından istifadə etməyiniz xahiş olunur
+                </p>
+            </div>
+            <div class="dresscode-body">
+                <img src="assets/dress-code-illustration-sBv8miCU.png"
+                     alt="Zərif qonaqlar illüstrasiyası"
+                     class="dresscode-illustration">
+                <div class="dresscode-card">
+                    <h3 class="dresscode-card-title">Yay Zərifliyi</h3>
+                    <p class="dresscode-card-text">
+                        Bu xüsusi günümüzdə sizin yay fəslinin canlı və gözəl rənglərini əks etdirən zərif geyimlərdə olmağınızı çox arzu edirik.
+                    </p>
+                    <p class="dresscode-card-note">
+                        Gün ərzində bol rəqs və unudulmaz anlar olacaq, buna görə də hərəkət etməyə rahat imkan verən geyimlər seçməyiniz tövsiyə olunur.
+                    </p>
+                    <p class="dresscode-card-note">
+                        Rahatlığınızı nəzərə alaraq, həm geyim, həm də ayaqqabı seçimində yüngül, komfortlu və sərbəst hərəkət etməyə imkan verən variantlara üstünlük verməyinizi xahiş edirik.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-   
     <!-- ── ORDER OF THE DAY ── -->
     <section class="order-section">
         <div class="order-hero">
@@ -1049,139 +967,159 @@ Bu gecə yalnız bir nişan deyil, sevgimizin ən gözəl xatirələrindən biri
                         <div class="order-step-content">
                             <p class="order-step-time">18:00</p>
                             <h3 class="order-step-title">Gəliş &amp; Qarşılama</h3>
-                            <p class="order-step-desc">Sizin üçün xüsusi seçilmiş yerlərdə əyləşmə</p>
+                            <p class="order-step-desc">Sevgi ilə hazırlanmış məkanımızda yerlərinizi alaraq bu unudulmaz gecənin bir parçasına çevrilin</p>
                         </div>
                     </div>
                     <div class="order-connector"></div>
                     <div class="order-step">
                         <div class="order-step-content">
                             <h3 class="order-step-title">Şirinçay</h3>
-                            <p class="order-step-desc">Böyüklərin razılığının alınması</p>
+                            <p class="order-step-desc">Böyüklərin xeyir-duası və səmimi söhbətlərin müşayiət etdiyi ənənəvi anlar</p>
                         </div>
                     </div>
                     <div class="order-connector"></div>
                     <div class="order-step">
                         <div class="order-step-content">
-                            <h3 class="order-step-title">Üzüklərin taxılması &amp; Rəqs</h3>
-                            <p class="order-step-desc">Bu saniyələr onların ən unudulmaz xatirəsinə çevriləcək</p>
+                            <h3 class="order-step-title">Üzüklərin Taxılması &amp; İlk Rəqs</h3>
+                            <p class="order-step-desc">Bu gecənin ən duyğulu və yaddaşlarda iz qoyacaq anlarına birlikdə şahidlik edəcəyik</p>
                         </div>
                     </div>
                     <div class="order-connector"></div>
                     <div class="order-step">
                         <div class="order-step-content">
-                            <h3 class="order-step-title">Rəqs</h3>
-                            <p class="order-step-desc">Biz sizi hər zaman rəqs edərkən görmək istəyirik</p>
+                            <h3 class="order-step-title">Rəqs &amp; Əyləncə</h3>
+                            <p class="order-step-desc">Səhnədə sizinlə bolca rəqs etmək üçün səbirsizlənirik</p>
                         </div>
                     </div>
                     <div class="order-connector"></div>
                     <div class="order-step">
                         <div class="order-step-content">
-                            <h3 class="order-step-title">Şəkillər &amp; videolar</h3>
-                            <p class="order-step-desc">Bizimlə şəkillər çəkdirməyi videolar çəkdirməyi unutmayın</p>
+                            <h3 class="order-step-title">Şəkillər &amp; Videolar</h3>
+                            <p class="order-step-desc">Birlikdə çəkdiyimiz hər şəkil və video bu gecənin ən gözəl xatirəsinə çevriləcək</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── MEDIA SHARING ── -->
+    <section class="media-section">
+        <img src="assets/entrada.png" alt="">
+        <p class="media-text">
+Ən gözəl anlarımızın şahidi olacağınız bu xüsusi gecədə, sizinlə birlikdə doyunca əylənmək və rəqs etmək üçün səbirsizlənirik. Hər musiqinin sədasında sizi səhnədə xoşbəxt və şən görmək, bu gecəni bizim üçün daha da mənalı və unudulmaz edəcək.            </p>
+        <div class="media-inner">
+            <div class="media-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
+                    <circle cx="12" cy="13" r="3"></circle>
+                </svg>
+            </div>
+
+            <h2 class="media-title">Xatirələrinizi bizimlə paylaşın ✨</h2>
+            <p class="media-text">
+Bu unudulmaz gecədən çəkəcəyiniz şəkil və videoları bizimlə paylaşaraq xatirələrimizi daha da gözəlləşdirə bilərsiniz.</p>
+
+            <div class="media-divider"></div>
+
+            <div class="media-link-box">
+                <p class="media-link-label">Media fayllarınızı yükləmək üçün</p>
+                <div class="media-link-placeholder">[ BURADA LİNK YERLƏŞDİRİLƏCƏK ]</div>
+                <a href="#" class="media-upload-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    Şəkil &amp; Video Yüklə
+                </a>
             </div>
         </div>
     </section>
 
     <!-- ── COUPLE PHOTO ── -->
     <section class="couple-photo-section">
-        <img src="assets/13.jpeg" alt="Mar y Jaume">
+        <img src="assets/13.jpeg" alt="Muraz & Gülnur">
     </section>
 
     <!-- ── RSVP ── -->
-   <section class="rsvp-section" id="rsvp">
-    <div class="rsvp-inner">
-        <div class="rsvp-header">
-            <h2 class="rsvp-title">Təsdiq</h2>
-            <p class="rsvp-subtitle">Ümid edirik ki, bu xüsusi gündə bizimlə olacaqsınız</p>
-        </div>
+    <section class="rsvp-section" id="rsvp">
+        <div class="rsvp-inner">
+            <div class="rsvp-header">
+                <h2 class="rsvp-title">Təsdiq</h2>
+                <p class="rsvp-subtitle">Ümid edirik ki, bu xüsusi gündə bizimlə olacaqsınız</p>
+            </div>
 
-        <form class="rsvp-form" onsubmit="handleRsvp(event)">
+            <form class="rsvp-form" onsubmit="handleRsvp(event)">
 
-            <div class="rsvp-field">
-                <label class="rsvp-label">İştirak edəcəksiniz? *</label>
-
-                <div class="rsvp-radio-group">
-                    <div class="rsvp-radio-option">
-                        <input type="radio" id="attend-yes" name="attendance" value="yes" checked>
-                        <label for="attend-yes">Bəli, iştirak edəcəyəm</label>
-                    </div>
-
-                    <div class="rsvp-radio-option">
-                        <input type="radio" id="attend-no" name="attendance" value="no">
-                        <label for="attend-no">Təəssüf ki, iştirak edə bilməyəcəyəm</label>
+                <div class="rsvp-field">
+                    <label class="rsvp-label">İştirak edəcəksiniz? *</label>
+                    <div class="rsvp-radio-group">
+                        <div class="rsvp-radio-option">
+                            <input type="radio" id="attend-yes" name="attendance" value="yes" checked>
+                            <label for="attend-yes">Bəli, iştirak edəcəyəm</label>
+                        </div>
+                        <div class="rsvp-radio-option">
+                            <input type="radio" id="attend-no" name="attendance" value="no">
+                            <label for="attend-no">Təəssüf ki, iştirak edə bilməyəcəyəm</label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Ad Soyad -->
-            <div class="rsvp-field">
-                <label class="rsvp-label" for="rsvp-name">Ad və Soyad *</label>
+                <div class="rsvp-field">
+                    <label class="rsvp-label" for="rsvp-name">Ad və Soyad *</label>
+                    <input class="rsvp-input" type="text" id="rsvp-name" required
+                           placeholder="Ad və soyadınızı daxil edin" maxlength="100">
+                </div>
 
-                <input class="rsvp-input" type="text" id="rsvp-name" required
-                       placeholder="Ad və soyadınızı daxil edin" maxlength="100">
-            </div>
+                <div class="rsvp-field">
+                    <label class="rsvp-label" for="rsvp-song">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18V5l12-2v13"></path>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <circle cx="18" cy="16" r="3"></circle>
+                        </svg>
+                        Eşitmək istədiyiniz mahnı
+                    </label>
+                    <input class="rsvp-input" type="text" id="rsvp-song"
+                           placeholder="Məsələn: Viva la Vida - Coldplay" maxlength="200">
+                </div>
 
-            <!-- Mahnı -->
-            <div class="rsvp-field">
-                <label class="rsvp-label" for="rsvp-song">
+                <div class="rsvp-field">
+                    <label class="rsvp-label" for="rsvp-message">
+                        Bizim üçün mesajınız (istəyə bağlı)
+                    </label>
+                    <textarea class="rsvp-textarea" id="rsvp-message"
+                              placeholder="Bizə bir neçə xoş söz yazın..." rows="3" maxlength="1000"></textarea>
+                </div>
 
+                <button type="submit" class="rsvp-submit">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 18V5l12-2v13"></path>
-                        <circle cx="6" cy="18" r="3"></circle>
-                        <circle cx="18" cy="16" r="3"></circle>
+                        <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path>
+                        <path d="m21.854 2.147-10.94 10.939"></path>
                     </svg>
+                    Təsdiqi göndər
+                </button>
 
-                    Eşitmək istədiyiniz mahnı
-                </label>
+            </form>
+        </div>
+    </section>
 
-                <input class="rsvp-input" type="text" id="rsvp-song"
-                       placeholder="Məsələn: Viva la Vida - Coldplay" maxlength="200">
-            </div>
-
-            <!-- Mesaj -->
-            <div class="rsvp-field">
-                <label class="rsvp-label" for="rsvp-message">
-                    Bizim üçün mesajınız (istəyə bağlı)
-                </label>
-
-                <textarea class="rsvp-textarea" id="rsvp-message"
-                          placeholder="Bizə bir neçə xoş söz yazın..." rows="3" maxlength="1000"></textarea>
-            </div>
-
-            <!-- Göndər -->
-            <button type="submit" class="rsvp-submit">
-
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path>
-                    <path d="m21.854 2.147-10.94 10.939"></path>
-                </svg>
-
-                Təsdiqi göndər
-            </button>
-
-        </form>
-    </div>
-</section>
-
-
-
-    <!-- ── FOOTER: NAME + ORNAMENT ── -->
+    <!-- ── FOOTER ── -->
     <div class="footer-ornament-section">
         <p class="footer-ornament-names">Muraz &amp; Gülnur</p>
         <p class="footer-ornament-date">İyun 15, 2026</p>
         <img src="assets/footer-ornament-doM17sdI.png" alt="Ornament" class="ornament">
     </div>
 
-
     <script>
         /* ── Countdown ── */
         function updateCountdown() {
-            const target = new Date('2026-06-15T00:00:00');
+            const target = new Date('2026-06-15T18:00:00');
             const diff   = target - new Date();
 
             if (diff <= 0) {
@@ -1204,38 +1142,11 @@ Bu gecə yalnız bir nişan deyil, sevgimizin ən gözəl xatirələrindən biri
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        /* ── Companions ── */
-        let companionCount = 0;
-
-        function addCompanion(type) {
-            companionCount++;
-            const list = document.getElementById('companions-list');
-            const row  = document.createElement('div');
-            row.className = 'companion-row';
-            row.dataset.id = companionCount;
-            row.innerHTML = `
-                <input type="text" placeholder="${type} name" maxlength="100">
-                <input type="text" placeholder="Allergies (optional)" maxlength="200">
-                <span class="companion-tag">${type}</span>
-                <button type="button" class="companion-remove" onclick="removeCompanion(${companionCount})">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
-                    </svg>
-                </button>`;
-            list.appendChild(row);
-        }
-
-        function removeCompanion(id) {
-            const row = document.querySelector(`.companion-row[data-id="${id}"]`);
-            if (row) row.remove();
-        }
-
         /* ── RSVP submit ── */
         function handleRsvp(e) {
             e.preventDefault();
             const btn = e.target.querySelector('.rsvp-submit');
-            btn.textContent = '✓ RSVP Sent!';
+            btn.innerHTML = '✓ Göndərildi!';
             btn.style.background = '#6b8f6b';
             btn.disabled = true;
         }
