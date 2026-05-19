@@ -55,7 +55,6 @@
         body.dark .countdown-section,
         body.dark .location-section,
         body.dark .dresscode-section,
-        body.dark .order-section,
         body.dark .media-section,
         body.dark .itinerary-section { background: #1f1e1a; }
         body.dark .welcome-title,
@@ -413,9 +412,7 @@
             font-weight: 400;
             margin-bottom: 8px;
         }
-.media-section{
-    margin-top: -60px;
-}
+
         .dresscode-card-text {
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(0.875rem, 3.5vw, 1rem);
@@ -440,7 +437,6 @@
         ───────────────────────────────────── */
         .order-section {
             position: relative;
-            background: #f5f0e8;
             overflow: hidden;
         }
 
@@ -474,7 +470,7 @@
         }
 
         .order-venue-wrapper { position: relative; margin-top: clamp(40px, 10vw, 64px); }
-        .order-venue-img { width: 100%; display: block; object-fit: contain; object-position: bottom;  }
+        .order-venue-img { width: 100%; display: block; object-fit: contain; object-position: bottom; }
 
         .order-timeline-overlay {
             position: absolute;
@@ -966,58 +962,70 @@ Bu gecə yalnız bir nişan deyil, sevgimizin ən gözəl xatirələrindən biri
         </div>
     </section>
 
-    <!-- ── ORDER OF THE DAY ── -->
-    <section class="order-section">
-        <div class="order-hero">
-            <img src="assets/couple-dancing-XNVWWZw7.png" alt="Couple dancing illustration">
-        </div>
-        <div class="order-header">
-            <h2 class="order-title">Günün Planı</h2>
-            <p class="order-subtitle">Sizləri unudulmaz anlar gözləyir</p>
-        </div>
-        <div class="order-venue-wrapper">
-            <img src="assets/entrada-venue-Cvj9q4nP.png" alt="Venue entrance" class="order-venue-img">
-            <div class="order-timeline-overlay">
-                <div class="order-timeline">
-                    <div class="order-step">
-                        <div class="order-step-content">
-                            <p class="order-step-time">18:00</p>
-                            <h3 class="order-step-title">Gəliş &amp; Qarşılama</h3>
-                            <p class="order-step-desc">Sevgi ilə hazırlanmış məkanımızda yerlərinizi alaraq bu unudulmaz gecənin bir parçasına çevrilin</p>
-                        </div>
+  <!-- ── ORDER OF THE DAY ── -->
+<section class="order-section">
+    <div class="order-hero">
+        <img src="assets/couple-dancing-XNVWWZw7.png" alt="Couple dancing illustration">
+    </div>
+    <div class="order-header">
+        <h2 class="order-title">Günün Planı</h2>
+        <p class="order-subtitle">Sizləri unudulmaz anlar gözləyir</p>
+    </div>
+    <div class="order-venue-wrapper" style="position: relative; overflow: hidden;">
+
+        <!-- Şəkil əvəzinə video -->
+        <video
+            autoplay
+            muted
+            loop
+            playsinline
+            class="order-venue-img"
+            style="
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            "
+        >
+            <source src="assets/pl.mp4" type="video/mp4">
+        </video>
+
+        <div class="order-timeline-overlay">
+            <div class="order-timeline">
+                <div class="order-step">
+                    <div class="order-step-content">
+                        <p class="order-step-time">18:00</p>
+                        <h3 class="order-step-title">Gəliş &amp; Qarşılama</h3>
                     </div>
-                    <div class="order-connector"></div>
-                    <div class="order-step">
-                        <div class="order-step-content">
-                            <h3 class="order-step-title">Şirinçay</h3>
-                            <p class="order-step-desc">Böyüklərin xeyir-duası və səmimi söhbətlərin müşayiət etdiyi ənənəvi anlar</p>
-                        </div>
+                </div>
+                <div class="order-connector"></div>
+                <div class="order-step">
+                    <div class="order-step-content">
+                        <h3 class="order-step-title">Şirinçay</h3>
                     </div>
-                    <div class="order-connector"></div>
-                    <div class="order-step">
-                        <div class="order-step-content">
-                            <h3 class="order-step-title">Üzüklərin Taxılması &amp; İlk Rəqs</h3>
-                            <p class="order-step-desc">Bu gecənin ən duyğulu və yaddaşlarda iz qoyacaq anlarına birlikdə şahidlik edəcəyik</p>
-                        </div>
+                </div>
+                <div class="order-connector"></div>
+                <div class="order-step">
+                    <div class="order-step-content">
+                        <h3 class="order-step-title">Üzüklərin Taxılması &amp; İlk Rəqs</h3>
                     </div>
-                    <div class="order-connector"></div>
-                    <div class="order-step">
-                        <div class="order-step-content">
-                            <h3 class="order-step-title">Rəqs &amp; Əyləncə</h3>
-                            <p class="order-step-desc">Səhnədə sizinlə bolca rəqs etmək üçün səbirsizlənirik</p>
-                        </div>
+                </div>
+                <div class="order-connector"></div>
+                <div class="order-step">
+                    <div class="order-step-content">
+                        <h3 class="order-step-title">Rəqs &amp; Əyləncə</h3>
                     </div>
-                    <div class="order-connector"></div>
-                    <div class="order-step">
-                        <div class="order-step-content">
-                            <h3 class="order-step-title">Şəkillər &amp; Videolar</h3>
-                            <p class="order-step-desc">Birlikdə çəkdiyimiz hər şəkil və video bu gecənin ən gözəl xatirəsinə çevriləcək</p>
-                        </div>
+                </div>
+                <div class="order-connector"></div>
+                <div class="order-step">
+                    <div class="order-step-content">
+                        <h3 class="order-step-title">Şəkillər &amp; Videolar</h3>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- ── MEDIA SHARING ── -->
     <section class="media-section">
@@ -1165,6 +1173,52 @@ Bu unudulmaz gecədən çəkəcəyiniz şəkil və videoları bizimlə paylaşar
             btn.innerHTML = '✓ Göndərildi!';
             btn.style.background = '#6b8f6b';
             btn.disabled = true;
+        }
+    </script>
+
+    <!-- ── YOUTUBE MUSIC ── -->
+    <iframe id="yt-player"
+        src="https://www.youtube.com/embed/8Vpj5rrbCT0?autoplay=1&mute=1&loop=1&playlist=8Vpj5rrbCT0&controls=0&showinfo=0&rel=0"
+        allow="autoplay"
+        style="position:fixed; width:0; height:0; border:none; opacity:0; pointer-events:none;">
+    </iframe>
+
+    <!-- ── MUTE BUTTON ── -->
+    <button id="mute-btn" onclick="toggleMute()" aria-label="Səsi aç/bağla"
+        style="position:fixed;bottom:24px;right:24px;z-index:50;width:48px;height:48px;border-radius:50%;background:rgba(74,92,74,0.9);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(74,92,74,0.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background 0.2s,transform 0.15s;"
+        onmouseover="this.style.transform='scale(1.1)'"
+        onmouseout="this.style.transform='scale(1)'">
+        <svg id="icon-muted" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path>
+            <line x1="22" x2="16" y1="9" y2="15"></line>
+            <line x1="16" x2="22" y1="9" y2="15"></line>
+        </svg>
+        <svg id="icon-unmuted" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             style="display:none;">
+            <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+    </button>
+
+    <script>
+        var isMuted = true;
+        var player = document.getElementById('yt-player');
+
+        function toggleMute() {
+            if (isMuted) {
+                player.src = player.src.replace('&mute=1','').replace('mute=1&','');
+                document.getElementById('icon-muted').style.display = 'none';
+                document.getElementById('icon-unmuted').style.display = 'block';
+                isMuted = false;
+            } else {
+                player.src = player.src + '&mute=1';
+                document.getElementById('icon-muted').style.display = 'block';
+                document.getElementById('icon-unmuted').style.display = 'none';
+                isMuted = true;
+            }
         }
     </script>
 
