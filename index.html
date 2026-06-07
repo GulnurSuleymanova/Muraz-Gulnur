@@ -837,9 +837,70 @@
 </head>
 <body>
 
-    <!-- ── HERO IMAGE ── -->
-   <section class="hero-image-section">
-  <video autoplay muted loop playsinline>
+<!-- ── HERO IMAGE ── -->
+<section class="hero-image-section" style="position: relative;">
+  <div id="video-loader" style="
+    position: absolute;
+    inset: 0;
+    background: #f5f0e8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: opacity 0.8s ease;
+  ">
+    <div style="
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      font-style: italic;
+      color: #4a5c4a;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    ">Muraz & Gülnur</div>
+
+    <!-- Petal spinner -->
+    <div style="width: 48px; height: 48px; position: relative;">
+      <style>
+        @keyframes petalSpin {
+          0%   { transform: rotate(0deg);   opacity: 1; }
+          100% { transform: rotate(360deg); opacity: 1; }
+        }
+        .petal-ring {
+          width: 48px; height: 48px;
+          border: 2px solid transparent;
+          border-top-color: #b49650;
+          border-right-color: rgba(180,150,80,0.35);
+          border-bottom-color: rgba(180,150,80,0.15);
+          border-left-color: rgba(180,150,80,0.05);
+          border-radius: 50%;
+          animation: petalSpin 1.1s cubic-bezier(0.6,0.2,0.4,0.8) infinite;
+        }
+      </style>
+      <div class="petal-ring"></div>
+    </div>
+
+    <p style="
+      margin-top: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(9px, 2.5vw, 11px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(74, 92, 74, 0.55);
+    ">15 İyun 2026</p>
+  </div>
+
+  <video
+    id="hero-video"
+    autoplay muted loop playsinline
+    style="opacity: 0; transition: opacity 0.8s ease;"
+    oncanplay="
+      document.getElementById('hero-video').style.opacity = '1';
+      var loader = document.getElementById('video-loader');
+      loader.style.opacity = '0';
+      setTimeout(function(){ loader.style.display = 'none'; }, 800);
+    "
+  >
     <source src="./assets/mg.mp4" type="video/mp4">
   </video>
 </section>
