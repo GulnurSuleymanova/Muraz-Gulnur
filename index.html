@@ -1211,69 +1211,166 @@ async function uploadToCloudinary() {
     </section>
 
     <!-- ── RSVP ── -->
-    <section class="rsvp-section" id="rsvp">
-        <div class="rsvp-inner">
-            <div class="rsvp-header">
-                <h2 class="rsvp-title">Təsdiq</h2>
-                <p class="rsvp-subtitle">Ümid edirik ki, bu xüsusi gündə bizimlə olacaqsınız</p>
-            </div>
+   <section class="rsvp-section" id="rsvp">
+    <div class="rsvp-inner">
+        <div class="rsvp-header">
+            <h2 class="rsvp-title">Təsdiq</h2>
+            <p class="rsvp-subtitle">Ümid edirik ki, bu xüsusi gündə bizimlə olacaqsınız</p>
+        </div>
 
-            <form class="rsvp-form" action="https://formspree.io/f/mqenvvdp" method="POST">
+        <form class="rsvp-form" action="https://formspree.io/f/mqenvvdp" method="POST">
 
-                <div class="rsvp-field">
-                    <label class="rsvp-label">İştirak edəcəksiniz? *</label>
-                    <div class="rsvp-radio-group">
-                        <div class="rsvp-radio-option">
-                            <input type="radio" id="attend-yes" name="attendance" value="Bəli, iştirak edəcəyəm" checked>
-                            <label for="attend-yes">Bəli, iştirak edəcəyəm</label>
-                        </div>
-                        <div class="rsvp-radio-option">
-                            <input type="radio" id="attend-no" name="attendance" value="Təəssüf ki, iştirak edə bilməyəcəyəm">
-                            <label for="attend-no">Təəssüf ki, iştirak edə bilməyəcəyəm</label>
-                        </div>
+            <div class="rsvp-field">
+                <label class="rsvp-label">İştirak edəcəksiniz? *</label>
+                <div class="rsvp-radio-group">
+                    <div class="rsvp-radio-option">
+                        <input type="radio" id="attend-yes" name="attendance" value="Bəli, iştirak edəcəyəm" checked>
+                        <label for="attend-yes">Bəli, iştirak edəcəyəm</label>
+                    </div>
+                    <div class="rsvp-radio-option">
+                        <input type="radio" id="attend-no" name="attendance" value="Təəssüf ki, iştirak edə bilməyəcəyəm">
+                        <label for="attend-no">Təəssüf ki, iştirak edə bilməyəcəyəm</label>
                     </div>
                 </div>
+            </div>
 
-                <div class="rsvp-field">
-                    <label class="rsvp-label" for="rsvp-name">Ad və Soyad *</label>
-                    <input class="rsvp-input" type="text" id="rsvp-name" name="ad_soyad" required
-                           placeholder="Ad və soyadınızı daxil edin" maxlength="100">
-                </div>
-
-                <div class="rsvp-field">
-                    <label class="rsvp-label" for="rsvp-song">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 18V5l12-2v13"></path>
-                            <circle cx="6" cy="18" r="3"></circle>
-                            <circle cx="18" cy="16" r="3"></circle>
-                        </svg>
-                        Eşitmək istədiyiniz mahnı
-                    </label>
-                    <input class="rsvp-input" type="text" id="rsvp-song" name="mahni"
-                           placeholder="Məsələn: Viva la Vida - Coldplay" maxlength="200">
-                </div>
-
-                <div class="rsvp-field">
-                    <label class="rsvp-label" for="rsvp-message">
-                        Bizim üçün mesajınız (istəyə bağlı)
-                    </label>
-                    <textarea class="rsvp-textarea" id="rsvp-message" name="mesaj"
-                              placeholder="Bizə bir neçə xoş söz yazın..." rows="3" maxlength="1000"></textarea>
-                </div>
-
-                <button type="submit" class="rsvp-submit">
+            <div class="rsvp-field" id="guest-count-field">
+                <label class="rsvp-label" for="rsvp-guests">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path>
-                        <path d="m21.854 2.147-10.94 10.939"></path>
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                     </svg>
-                    Təsdiqi göndər
-                </button>
+                    Neçə nəfər iştirak edəcəksiniz? *
+                </label>
+                <div class="rsvp-guest-counter">
+                    <button type="button" class="counter-btn" id="decrease-btn" onclick="changeGuests(-1)">−</button>
+                    <input class="rsvp-input counter-input" type="number" id="rsvp-guests" name="istirakci_sayi"
+                           value="1" min="1" max="10" required readonly>
+                    <button type="button" class="counter-btn" id="increase-btn" onclick="changeGuests(1)">+</button>
+                </div>
+            </div>
 
-            </form>
-        </div>
-    </section>
+            <div class="rsvp-field">
+                <label class="rsvp-label" for="rsvp-name">Ad və Soyad *</label>
+                <input class="rsvp-input" type="text" id="rsvp-name" name="ad_soyad" required
+                       placeholder="Ad və soyadınızı daxil edin" maxlength="100">
+            </div>
+
+            <div class="rsvp-field">
+                <label class="rsvp-label" for="rsvp-song">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 18V5l12-2v13"></path>
+                        <circle cx="6" cy="18" r="3"></circle>
+                        <circle cx="18" cy="16" r="3"></circle>
+                    </svg>
+                    Eşitmək istədiyiniz mahnı
+                </label>
+                <input class="rsvp-input" type="text" id="rsvp-song" name="mahni"
+                       placeholder="Məsələn: Viva la Vida - Coldplay" maxlength="200">
+            </div>
+
+            <div class="rsvp-field">
+                <label class="rsvp-label" for="rsvp-message">
+                    Bizim üçün mesajınız (istəyə bağlı)
+                </label>
+                <textarea class="rsvp-textarea" id="rsvp-message" name="mesaj"
+                          placeholder="Bizə bir neçə xoş söz yazın..." rows="3" maxlength="1000"></textarea>
+            </div>
+
+            <button type="submit" class="rsvp-submit">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path>
+                    <path d="m21.854 2.147-10.94 10.939"></path>
+                </svg>
+                Təsdiqi göndər
+            </button>
+
+        </form>
+    </div>
+</section>
+
+<style>
+  .rsvp-guest-counter {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+  }
+
+  .counter-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid currentColor; /* uyğunlaşdırın */
+      background: transparent;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+  }
+
+  .counter-btn:hover {
+      background: rgba(0,0,0,0.08);
+  }
+
+  .counter-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+  }
+
+  .counter-input {
+      width: 70px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      -moz-appearance: textfield;
+  }
+
+  .counter-input::-webkit-outer-spin-button,
+  .counter-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+</style>
+
+<script>
+  function changeGuests(delta) {
+      const input = document.getElementById('rsvp-guests');
+      const min = parseInt(input.min);
+      const max = parseInt(input.max);
+      let val = parseInt(input.value) + delta;
+      val = Math.max(min, Math.min(max, val));
+      input.value = val;
+
+      document.getElementById('decrease-btn').disabled = val <= min;
+      document.getElementById('increase-btn').disabled = val >= max;
+  }
+
+  // Attendance radio — qonaq sayı sahəsini gizlət/göstər
+  document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+      radio.addEventListener('change', function () {
+          const field = document.getElementById('guest-count-field');
+          const guestInput = document.getElementById('rsvp-guests');
+          if (this.value.startsWith('Bəli')) {
+              field.style.display = '';
+              guestInput.required = true;
+          } else {
+              field.style.display = 'none';
+              guestInput.required = false;
+          }
+      });
+  });
+
+  // Başlanğıcda düymə vəziyyətlərini tənzimlə
+  document.getElementById('decrease-btn').disabled = true;
+</script>
 
     <!-- ── FOOTER ── -->
     <div class="footer-ornament-section">
