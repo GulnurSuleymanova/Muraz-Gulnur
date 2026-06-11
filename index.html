@@ -25,158 +25,28 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
-        /* ══════════════════════════════════════
-           PAGE LOADER
-        ══════════════════════════════════════ */
         #page-loader {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: #f5f0e8;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            transition: opacity 0.9s ease, visibility 0.9s ease;
+            position: fixed; inset: 0; z-index: 9999; background: #f5f0e8;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            overflow: hidden; transition: opacity 0.9s ease, visibility 0.9s ease;
         }
-
-        #page-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .loader-names {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 8vw, 3rem);
-            font-style: italic;
-            color: #4a5c4a;
-            font-weight: 400;
-            letter-spacing: 0.04em;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: loaderFadeUp 0.8s ease 0.1s forwards;
-        }
-
+        #page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .loader-names { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 3rem); font-style: italic; color: #4a5c4a; font-weight: 400; letter-spacing: 0.04em; opacity: 0; transform: translateY(10px); animation: loaderFadeUp 0.8s ease 0.1s forwards; }
         .loader-ampersand { color: #b49650; }
-
-        .loader-date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(9px, 2.5vw, 11px);
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            color: rgba(74, 92, 74, 0.55);
-            font-weight: 300;
-            margin-top: 8px;
-            opacity: 0;
-            animation: loaderFadeUp 0.8s ease 0.3s forwards;
-        }
-
-        .loader-line {
-            width: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #b49650, transparent);
-            margin: 20px 0;
-            animation: loaderExpand 0.9s ease 0.5s forwards;
-        }
-
-        .loader-flower-wrap {
-            position: relative;
-            width: 56px;
-            height: 56px;
-            opacity: 0;
-            animation: loaderFadeIn 0.6s ease 0.4s forwards;
-        }
-
-        .loader-ring-outer {
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            border: 1.5px solid transparent;
-            border-top-color: #b49650;
-            border-right-color: rgba(180,150,80,0.3);
-            animation: spinCW 1.6s linear infinite;
-        }
-
-        .loader-ring-inner {
-            position: absolute;
-            inset: 10px;
-            border-radius: 50%;
-            border: 1.5px solid transparent;
-            border-bottom-color: rgba(74,92,74,0.5);
-            border-left-color: rgba(74,92,74,0.2);
-            animation: spinCCW 1.2s linear infinite;
-        }
-
-        .loader-center-dot {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #b49650;
-            animation: dotPulse 1.2s ease-in-out infinite;
-        }
-
-        .loader-progress-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #b49650 40%, #4a5c4a 100%);
-            animation: progressFill 2.4s ease forwards;
-        }
-
-        @keyframes loaderFadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes loaderFadeIn {
-            to { opacity: 1; }
-        }
-        @keyframes loaderExpand {
-            to { width: clamp(80px, 20vw, 120px); }
-        }
-        @keyframes spinCW {
-            to { transform: rotate(360deg); }
-        }
-        @keyframes spinCCW {
-            to { transform: rotate(-360deg); }
-        }
-        @keyframes dotPulse {
-            0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
-            50%       { transform: translate(-50%,-50%) scale(1.5); opacity: 1; }
-        }
-        @keyframes progressFill {
-            0%   { width: 0%; }
-            30%  { width: 35%; }
-            60%  { width: 65%; }
-            85%  { width: 85%; }
-            100% { width: 100%; }
-        }
-
-        /* ── original styles ── */
-        :root { --foreground: 74 92 74; --gold-soft: 180 150 80; }
-        .dark { --foreground: 245 240 232; --gold-soft: 180 150 80; }
-        .text-foreground { color: hsl(var(--foreground)); }
-        .text-foreground\/80 { color: hsl(var(--foreground) / 0.8); }
-        .text-foreground\/70 { color: hsl(var(--foreground) / 0.7); }
-        .text-gold { color: #b49650; }
-        .bg-ivory { background-color: #f5f0e8; }
-        .hero-overlay { position: absolute; inset: 0; background: rgba(245,240,232,0.25); pointer-events: none; z-index: 1; }
-        .dark .hero-overlay { background: rgba(20,20,20,0.4); }
-        body.dark { background: #1a1a18; }
-        body.dark .welcome-section, body.dark .divider-section, body.dark .countdown-section,
-        body.dark .location-section, body.dark .dresscode-section, body.dark .media-section,
-        body.dark .itinerary-section { background: #1f1e1a; }
-        body.dark .welcome-title, body.dark .countdown-title, body.dark .location-title,
-        body.dark .location-name, body.dark .dresscode-title, body.dark .dresscode-card-title,
-        body.dark .order-title, body.dark .order-step-title, body.dark .media-title { color: #f0ebe0; }
-        body.dark .welcome-text, body.dark .dresscode-card-text, body.dark .dresscode-card-note { color: rgba(240,235,224,0.75); }
-        body.dark .dresscode-card, body.dark .media-link-box, body.dark .rsvp-section, body.dark .footer-ornament-section { background: #2a2924; }
+        .loader-date { font-family: 'Cormorant Garamond', serif; font-size: clamp(9px, 2.5vw, 11px); letter-spacing: 0.28em; text-transform: uppercase; color: rgba(74,92,74,0.55); font-weight: 300; margin-top: 8px; opacity: 0; animation: loaderFadeUp 0.8s ease 0.3s forwards; }
+        .loader-line { width: 0; height: 1px; background: linear-gradient(90deg, transparent, #b49650, transparent); margin: 20px 0; animation: loaderExpand 0.9s ease 0.5s forwards; }
+        .loader-flower-wrap { position: relative; width: 56px; height: 56px; opacity: 0; animation: loaderFadeIn 0.6s ease 0.4s forwards; }
+        .loader-ring-outer { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid transparent; border-top-color: #b49650; border-right-color: rgba(180,150,80,0.3); animation: spinCW 1.6s linear infinite; }
+        .loader-ring-inner { position: absolute; inset: 10px; border-radius: 50%; border: 1.5px solid transparent; border-bottom-color: rgba(74,92,74,0.5); border-left-color: rgba(74,92,74,0.2); animation: spinCCW 1.2s linear infinite; }
+        .loader-center-dot { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 6px; height: 6px; border-radius: 50%; background: #b49650; animation: dotPulse 1.2s ease-in-out infinite; }
+        .loader-progress-bar { position: absolute; bottom: 0; left: 0; width: 0%; height: 2px; background: linear-gradient(90deg, transparent, #b49650 40%, #4a5c4a 100%); animation: progressFill 2.4s ease forwards; }
+        @keyframes loaderFadeUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes loaderFadeIn { to { opacity: 1; } }
+        @keyframes loaderExpand { to { width: clamp(80px, 20vw, 120px); } }
+        @keyframes spinCW { to { transform: rotate(360deg); } }
+        @keyframes spinCCW { to { transform: rotate(-360deg); } }
+        @keyframes dotPulse { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; } 50% { transform: translate(-50%,-50%) scale(1.5); opacity: 1; } }
+        @keyframes progressFill { 0%{width:0%} 30%{width:35%} 60%{width:65%} 85%{width:85%} 100%{width:100%} }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { font-size: 16px; -webkit-text-size-adjust: 100%; }
@@ -184,19 +54,17 @@
         img { max-width: 100%; height: auto; }
 
         .hero-image-section { width: 100%; overflow: hidden; margin: 0; padding: 0; line-height: 0; }
-        .hero-image-section img { width: 100%; display: block; }
-
         .welcome-section { background: #f5f0e8; padding: clamp(32px,8vw,56px) clamp(16px,5vw,24px) 0; }
         .welcome-inner { text-align: center; margin-bottom: clamp(24px,5vw,40px); max-width: 600px; margin-left: auto; margin-right: auto; }
         .welcome-title { font-family: 'Playfair Display',serif; font-size: clamp(1.6rem,6vw,2.25rem); color: #4a5c4a; font-weight: 400; margin-bottom: clamp(14px,4vw,20px); }
-        .welcome-text { color: rgba(74,92,74,0.85); font-weight: 700; font-family: 'Cormorant Garamond',serif; font-size: clamp(0.9rem,3.5vw,1.0625rem); line-height: 1.85; color: rgba(74,92,74,0.9); font-style: italic; padding: 0 4px; }
+        .welcome-text { font-family: 'Cormorant Garamond',serif; font-size: clamp(0.9rem,3.5vw,1.0625rem); line-height: 1.85; color: rgba(74,92,74,0.9); font-style: italic; font-weight: 700; padding: 0 4px; }
 
         .gallery-wrapper { width: 100%; overflow: hidden; }
         .gallery-track { display: flex; gap: 8px; width: max-content; animation: marquee 28s linear infinite; }
         .gallery-track:hover { animation-play-state: paused; }
         .gallery-item { flex-shrink: 0; overflow: hidden; height: clamp(160px,40vw,280px); width: clamp(112px,28vw,196px); }
         .gallery-item img { height: 100%; width: 100%; object-fit: cover; display: block; user-select: none; -webkit-user-drag: none; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
         .divider-section { background: #f5f0e8; display: flex; flex-direction: column; align-items: center; padding: clamp(32px,8vw,52px) 20px; }
         .divider-line { width: 80px; height: 1px; background: rgba(74,92,74,0.2); margin-bottom: clamp(20px,5vw,32px); }
@@ -215,19 +83,18 @@
         .location-section { background: #f5f0e8; padding: 0 clamp(12px,4vw,20px) clamp(40px,10vw,64px); display: flex; justify-content: center; }
         .location-card-wrapper { position: relative; width: 100%; max-width: 400px; }
         .location-frame-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; pointer-events: none; z-index: 0; }
-        .location-card { position: relative; z-index: 10; margin: 16%; background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); padding: clamp(14px,4vw,20px) clamp(12px,3vw,16px) 0; border-radius: 2.5rem; text-align: center; overflow: hidden; }
+        .location-card { position: relative; z-index: 10; margin: 16%; background: rgba(255,255,255,0.95); backdrop-filter: blur(4px); padding: clamp(14px,4vw,20px) clamp(12px,3vw,16px) 0; border-radius: 2.5rem; text-align: center; overflow: hidden; }
         .location-title { font-family: 'Playfair Display',serif; font-size: clamp(1.4rem,5vw,2rem); font-style: italic; color: #4a5c4a; margin-bottom: 12px; }
         .location-name { font-family: 'Playfair Display',serif; font-size: clamp(0.8rem,3vw,1.0625rem); text-transform: uppercase; letter-spacing: 0.18em; color: #4a5c4a; }
         .location-time { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; color: rgba(74,92,74,0.7); }
-        .location-time svg { width: 16px; height: 16px; flex-shrink: 0; }
         .location-time span { font-family: 'Cormorant Garamond',serif; font-size: clamp(0.75rem,3vw,0.875rem); font-weight: 600; }
         .location-illustration { margin: 16px -16px 0; display: block; width: calc(100% + 32px); }
 
         .dresscode-section { background: #f5f0e8; padding: 0 clamp(12px,4vw,20px) clamp(40px,10vw,64px); }
         .dresscode-inner { max-width: 480px; margin: 0 auto; }
-        .dresscode-header { text-align: center; font-weight: 300;}
-        .dresscode-title { color: rgba(74,92,74,0.85); font-weight: 700; font-family: 'Playfair Display',serif; font-size: clamp(1.8rem,7vw,2.5rem); font-style: italic;  margin-bottom: 10px; ;}
-        .dresscode-subtitle {color: rgba(74,92,74,0.85); font-weight: 700;  font-family: 'Cormorant Garamond',serif; font-size: clamp(9px,2.5vw,11px); letter-spacing: 0.22em; text-transform: uppercase; line-height: 1.6; }
+        .dresscode-header { text-align: center; font-weight: 300; }
+        .dresscode-title { color: rgba(74,92,74,0.85); font-weight: 700; font-family: 'Playfair Display',serif; font-size: clamp(1.8rem,7vw,2.5rem); font-style: italic; margin-bottom: 10px; }
+        .dresscode-subtitle { color: rgba(74,92,74,0.85); font-weight: 700; font-family: 'Cormorant Garamond',serif; font-size: clamp(9px,2.5vw,11px); letter-spacing: 0.22em; text-transform: uppercase; line-height: 1.6; }
         .dresscode-body { text-align: center; }
         .dresscode-illustration { width: 100%; position: relative; z-index: 10; margin-bottom: -2rem; display: block; }
         .dresscode-card { background: #ffffff; border-radius: 2rem; padding: clamp(36px,10vw,48px) clamp(16px,5vw,24px) clamp(20px,5vw,32px); box-shadow: 0 4px 24px rgba(74,92,74,0.08); position: relative; z-index: 0; }
@@ -251,21 +118,34 @@
         .order-step-time { font-family: 'Cormorant Garamond',serif; font-size: clamp(0.65rem,2.5vw,0.75rem); letter-spacing: 0.22em; text-transform: uppercase; color: rgba(74,92,74,0.6); margin-bottom: 4px; }
         .order-step-title { font-family: 'Playfair Display',serif; font-size: clamp(0.875rem,3.5vw,1.125rem); color: #4a5c4a; font-weight: 500; margin-bottom: 4px; }
         .order-step-desc { font-family: 'Cormorant Garamond',serif; font-size: clamp(0.75rem,3vw,0.9375rem); color: rgba(74,92,74,0.8); line-height: 1.5; white-space: pre-line; }
-        .order-connector { width: 1px; height: clamp(40px,10vw,64px); background: rgba(74,92,74,0.3); transform-origin: top; }
+        .order-connector { width: 1px; height: clamp(40px,10vw,64px); background: rgba(74,92,74,0.3); }
 
         .media-section { background: #f5f0e8; padding: clamp(40px,10vw,72px) clamp(16px,5vw,24px) clamp(48px,12vw,80px); }
         .media-inner { max-width: 480px; margin: 0 auto; text-align: center; }
-        .media-icon { display: flex; justify-content: center; margin-bottom: clamp(16px,4vw,24px); }
-        .media-icon svg { width: clamp(40px,10vw,56px); height: clamp(40px,10vw,56px); color: #4a5c4a; opacity: 0.7; }
         .media-title { font-family: 'Playfair Display',serif; font-size: clamp(1.6rem,6vw,2.25rem); font-style: italic; color: #4a5c4a; font-weight: 400; margin-bottom: clamp(16px,4vw,24px); line-height: 1.2; }
-        .media-text { color: rgba(74,92,74,0.85); font-weight: 700; font-family: 'Cormorant Garamond',serif; font-size: clamp(0.9rem,3.5vw,1.0625rem); line-height: 1.85; color: rgba(74,92,74,0.85); margin-bottom: clamp(24px,6vw,36px); }
-        .media-text em { font-style: italic; }
-        .media-divider { width: 60px; height: 1px; background: rgba(74,92,74,0.25); margin: 0 auto clamp(20px,5vw,28px); }
+        .media-text { font-family: 'Cormorant Garamond',serif; font-size: clamp(0.9rem,3.5vw,1.0625rem); line-height: 1.85; color: rgba(74,92,74,0.85); font-weight: 700; margin-bottom: clamp(24px,6vw,36px); }
 
         .couple-photo-section { width: 100%; }
         .couple-photo-section img { width: 100%; display: block; }
 
-        .rsvp-section { background-color: #cdc6b0; padding: clamp(24px,6vw,32px) clamp(16px,5vw,24px) 0; }
+        /* ═══════════════════════════════════
+           RSVP SECTION — pulse glow on scroll
+        ═══════════════════════════════════ */
+        .rsvp-section {
+            background-color: #cdc6b0;
+            padding: clamp(48px,12vw,80px) clamp(16px,5vw,24px) clamp(48px,12vw,72px);
+            position: relative;
+            transition: box-shadow 0.6s ease;
+        }
+        .rsvp-section.highlight {
+            box-shadow: inset 0 0 0 4px rgba(180,150,80,0.55), inset 0 0 60px rgba(180,150,80,0.18);
+            animation: rsvpPulse 1.8s ease 3;
+        }
+        @keyframes rsvpPulse {
+            0%   { box-shadow: inset 0 0 0 3px rgba(180,150,80,0.3),  inset 0 0 40px rgba(180,150,80,0.08); }
+            50%  { box-shadow: inset 0 0 0 5px rgba(180,150,80,0.7),  inset 0 0 80px rgba(180,150,80,0.28); }
+            100% { box-shadow: inset 0 0 0 3px rgba(180,150,80,0.3),  inset 0 0 40px rgba(180,150,80,0.08); }
+        }
         .rsvp-inner { max-width: 480px; margin: 0 auto; }
         .rsvp-header { text-align: center; margin-bottom: clamp(28px,7vw,48px); }
         .rsvp-title { font-family: 'Playfair Display',serif; font-size: clamp(2rem,8vw,3rem); font-style: italic; color: #4a5c4a; font-weight: 400; margin-bottom: 10px; }
@@ -283,9 +163,106 @@
         .rsvp-radio-option { display: flex; align-items: center; gap: 8px; cursor: pointer; }
         .rsvp-radio-option input[type="radio"] { accent-color: #4a5c4a; width: 18px; height: 18px; cursor: pointer; flex-shrink: 0; }
         .rsvp-radio-option label { font-family: 'Cormorant Garamond',serif; font-size: clamp(0.875rem,3.5vw,0.9375rem); color: #4a5c4a; cursor: pointer; }
-        .rsvp-submit { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 48px; background: #4a5c4a; color: #ffffff; border: none; border-radius: 6px; font-family: 'Cormorant Garamond',serif; font-size: clamp(0.9rem,3.5vw,1rem); font-weight: 600; cursor: pointer; transition: background 0.2s; -webkit-appearance: none; touch-action: manipulation; }
+        .rsvp-guest-counter { display: flex; align-items: center; gap: 12px; }
+        .counter-btn { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #4a5c4a; background: transparent; font-size: 1.4rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; color: #4a5c4a; }
+        .counter-btn:hover { background: rgba(74,92,74,0.1); }
+        .counter-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .counter-input { width: 70px; text-align: center; font-size: 1.1rem; font-weight: 600; -moz-appearance: textfield; }
+        .counter-input::-webkit-outer-spin-button, .counter-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .rsvp-submit { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 48px; background: #4a5c4a; color: #fff; border: none; border-radius: 6px; font-family: 'Cormorant Garamond',serif; font-size: clamp(0.9rem,3.5vw,1rem); font-weight: 600; cursor: pointer; transition: background 0.2s; -webkit-appearance: none; touch-action: manipulation; }
         .rsvp-submit:hover { background: rgba(74,92,74,0.9); }
         .rsvp-submit svg { width: 16px; height: 16px; }
+
+        /* ═══════════════════════════════════
+           STICKY BANNER (bottom)
+        ═══════════════════════════════════ */
+        #rsvp-sticky {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 200;
+            background: #4a5c4a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px clamp(16px,5vw,24px);
+            transform: translateY(100%);
+            transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+            box-shadow: 0 -4px 24px rgba(74,92,74,0.3);
+        }
+        #rsvp-sticky.visible { transform: translateY(0); }
+        #rsvp-sticky.hidden-forever { display: none !important; }
+        .sticky-text { font-family: 'Cormorant Garamond',serif; font-size: clamp(0.85rem,3.5vw,1rem); color: rgba(245,240,232,0.9); font-weight: 600; }
+        .sticky-text strong { font-family: 'Playfair Display',serif; font-size: clamp(0.95rem,3.8vw,1.1rem); font-style: italic; color: #f5f0e8; display: block; }
+        .sticky-btn {
+            font-family: 'Cormorant Garamond',serif;
+            font-size: clamp(0.85rem,3.2vw,0.95rem);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            background: #b49650;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-left: 16px;
+            transition: background 0.2s, transform 0.15s;
+            animation: stickyPulse 2.5s ease-in-out infinite;
+        }
+        .sticky-btn:hover { background: rgba(180,150,80,0.85); transform: scale(1.04); }
+        @keyframes stickyPulse {
+            0%,100% { box-shadow: 0 0 0 0 rgba(180,150,80,0.5); }
+            50%      { box-shadow: 0 0 0 8px rgba(180,150,80,0); }
+        }
+
+        /* ═══════════════════════════════════
+           FLOATING RSVP BADGE
+        ═══════════════════════════════════ */
+        #rsvp-fab {
+            position: fixed;
+            bottom: 84px;
+            left: 24px;
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+        }
+        #rsvp-fab.visible { opacity: 1; transform: translateX(0); pointer-events: auto; }
+        .fab-btn {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: #b49650;
+            border: none;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 16px rgba(180,150,80,0.45);
+            transition: transform 0.15s, background 0.2s;
+            animation: fabRing 2.8s ease-in-out infinite;
+        }
+        .fab-btn:hover { transform: scale(1.12); background: rgba(180,150,80,0.9); }
+        .fab-btn svg { width: 22px; height: 22px; color: #fff; }
+        .fab-label {
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #4a5c4a;
+            background: rgba(245,240,232,0.9);
+            padding: 3px 8px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        @keyframes fabRing {
+            0%,100% { box-shadow: 0 4px 16px rgba(180,150,80,0.45), 0 0 0 0 rgba(180,150,80,0.4); }
+            60%      { box-shadow: 0 4px 16px rgba(180,150,80,0.45), 0 0 0 12px rgba(180,150,80,0); }
+        }
 
         .footer-ornament-section { background: #cdc6b0; display: flex; flex-direction: column; align-items: center; padding-top: clamp(32px,8vw,48px); padding-bottom: 0; }
         .footer-ornament-names { font-family: 'Playfair Display',serif; font-size: clamp(1.4rem,5vw,1.875rem); font-style: italic; color: #4a5c4a; font-weight: 400; margin-top: 8px; margin-bottom: 4px; }
@@ -295,9 +272,7 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     PAGE LOADER
-══════════════════════════════════════ -->
+<!-- PAGE LOADER -->
 <div id="page-loader">
     <p class="loader-names">Muraz <span class="loader-ampersand">&amp;</span> Gülnur</p>
     <p class="loader-date">15 İyun 2026</p>
@@ -310,30 +285,27 @@
     <div class="loader-progress-bar"></div>
 </div>
 
-<!-- ── HERO IMAGE ── -->
-<section class="hero-image-section" style="position: relative;">
-  <div id="video-loader" style="position:absolute;inset:0;background:#f5f0e8;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;transition:opacity 0.8s ease;">
-    <div style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,5vw,2rem);font-style:italic;color:#4a5c4a;margin-bottom:24px;letter-spacing:0.05em;">Muraz &amp; Gülnur</div>
-    <div style="width:48px;height:48px;position:relative;">
-      <style>
-        @keyframes petalSpin { 0% { transform:rotate(0deg); opacity:1; } 100% { transform:rotate(360deg); opacity:1; } }
-        .petal-ring { width:48px;height:48px;border:2px solid transparent;border-top-color:#b49650;border-right-color:rgba(180,150,80,0.35);border-bottom-color:rgba(180,150,80,0.15);border-left-color:rgba(180,150,80,0.05);border-radius:50%;animation:petalSpin 1.1s cubic-bezier(0.6,0.2,0.4,0.8) infinite; }
-      </style>
-      <div class="petal-ring"></div>
+<!-- HERO VIDEO -->
+<section class="hero-image-section" style="position:relative;">
+    <div id="video-loader" style="position:absolute;inset:0;background:#f5f0e8;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;transition:opacity 0.8s ease;">
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,5vw,2rem);font-style:italic;color:#4a5c4a;margin-bottom:24px;letter-spacing:0.05em;">Muraz &amp; Gülnur</div>
+        <div style="width:48px;height:48px;position:relative;">
+            <style>@keyframes petalSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}.petal-ring{width:48px;height:48px;border:2px solid transparent;border-top-color:#b49650;border-right-color:rgba(180,150,80,0.35);border-bottom-color:rgba(180,150,80,0.15);border-left-color:rgba(180,150,80,0.05);border-radius:50%;animation:petalSpin 1.1s cubic-bezier(0.6,0.2,0.4,0.8) infinite}</style>
+            <div class="petal-ring"></div>
+        </div>
+        <p style="margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:clamp(9px,2.5vw,11px);letter-spacing:0.22em;text-transform:uppercase;color:rgba(74,92,74,0.55);">15 İyun 2026</p>
     </div>
-    <p style="margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:clamp(9px,2.5vw,11px);letter-spacing:0.22em;text-transform:uppercase;color:rgba(74,92,74,0.55);">15 İyun 2026</p>
-  </div>
-  <video id="hero-video" autoplay muted loop playsinline style="opacity:0;transition:opacity 0.8s ease;"
-    oncanplay="document.getElementById('hero-video').style.opacity='1';var l=document.getElementById('video-loader');l.style.opacity='0';setTimeout(function(){l.style.display='none';},800);">
-    <source src="./assets/mg.mp4" type="video/mp4">
-  </video>
+    <video id="hero-video" autoplay muted loop playsinline style="opacity:0;transition:opacity 0.8s ease;"
+        oncanplay="this.style.opacity='1';var l=document.getElementById('video-loader');l.style.opacity='0';setTimeout(function(){l.style.display='none'},800)">
+        <source src="./assets/mg.mp4" type="video/mp4">
+    </video>
 </section>
 
-    <!-- ── WELCOME ── -->
-    <section class="welcome-section">
-        <div class="welcome-inner">
-            <h2 class="welcome-title">Xoş Gəlmisiniz!</h2>
-            <p class="welcome-text">Bəzi sevgilər təsadüf kimi başlayar, amma zamanla bir ömürlük hekayəyə çevrilər…
+<!-- WELCOME -->
+<section class="welcome-section">
+    <div class="welcome-inner">
+        <h2 class="welcome-title">Xoş Gəlmisiniz!</h2>
+        <p class="welcome-text">Bəzi sevgilər təsadüf kimi başlayar, amma zamanla bir ömürlük hekayəyə çevrilər…
 Biz də sevgimizi sonsuzluğa aparacaq ilk addımı atarkən, bu ən gözəl günümüzdə sizi yanımızda görmək istəyirik.
 
 Sizi Gəncə şəhərində keçiriləcək nişan mərasimimizə sevgi ilə dəvət edirik.
@@ -342,295 +314,369 @@ Bir-birimizin əllərini tutaraq ürəklərimizi üzüklərlə birləşdirəcəy
 Sizin sevginiz, gülüşünüz və xoş arzularınız bu gecəni bizim üçün daha da unudulmaz edəcək.
 
 Bu gecə yalnız bir nişan deyil, sevgimizin ən gözəl xatirələrindən biri olacaq.</p>
-        </div>
-        <div class="gallery-wrapper">
-            <div class="gallery-track">
-                <div class="gallery-item"><img src="assets/3.jpeg" alt="" style="object-position:center 20%;"></div>
-                <div class="gallery-item"><img src="assets/2.jpeg" alt="" style="object-position:center 55%;"></div>
-                <div class="gallery-item"><img src="assets/4.jpeg" alt="" style="object-position:center 40%;"></div>
-                <div class="gallery-item"><img src="assets/1.jpeg" alt="" style="object-position:center 55%;"></div>
-                <div class="gallery-item"><img src="assets/8.jpeg" alt="" style="object-position:center 30%;"></div>
-                <div class="gallery-item"><img src="assets/3.jpeg" alt="" style="object-position:center 20%;"></div>
-                <div class="gallery-item"><img src="assets/2.jpeg" alt="" style="object-position:center 55%;"></div>
-                <div class="gallery-item"><img src="assets/4.jpeg" alt="" style="object-position:center 40%;"></div>
-                <div class="gallery-item"><img src="assets/1.jpeg" alt="" style="object-position:center 55%;"></div>
-                <div class="gallery-item"><img src="assets/8.jpeg" alt="" style="object-position:center 30%;"></div>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider-section">
-        <div class="divider-line"></div>
-        <img src="assets/floral-vase-6x28LN74.png" alt="" class="divider-img">
     </div>
-
-    <section class="countdown-section">
-        <h2 class="countdown-title">Geri sayım</h2>
-        <p class="countdown-subtitle">15 İyun 2026 qədər</p>
-        <div class="countdown-wrapper">
-            <div class="countdown-unit"><div class="countdown-block"><span class="countdown-number" id="days">--</span><span class="countdown-label">Gün</span></div><div class="countdown-divider"></div></div>
-            <div class="countdown-unit"><div class="countdown-block"><span class="countdown-number" id="hours">--</span><span class="countdown-label">Saat</span></div><div class="countdown-divider"></div></div>
-            <div class="countdown-unit"><div class="countdown-block"><span class="countdown-number" id="minutes">--</span><span class="countdown-label">Dəqiqə</span></div><div class="countdown-divider"></div></div>
-            <div class="countdown-unit"><div class="countdown-block"><span class="countdown-number" id="seconds">--</span><span class="countdown-label">Saniyə</span></div></div>
+    <div class="gallery-wrapper">
+        <div class="gallery-track">
+            <div class="gallery-item"><img src="assets/3.jpeg" alt="" style="object-position:center 20%"></div>
+            <div class="gallery-item"><img src="assets/2.jpeg" alt="" style="object-position:center 55%"></div>
+            <div class="gallery-item"><img src="assets/4.jpeg" alt="" style="object-position:center 40%"></div>
+            <div class="gallery-item"><img src="assets/1.jpeg" alt="" style="object-position:center 55%"></div>
+            <div class="gallery-item"><img src="assets/8.jpeg" alt="" style="object-position:center 30%"></div>
+            <div class="gallery-item"><img src="assets/3.jpeg" alt="" style="object-position:center 20%"></div>
+            <div class="gallery-item"><img src="assets/2.jpeg" alt="" style="object-position:center 55%"></div>
+            <div class="gallery-item"><img src="assets/4.jpeg" alt="" style="object-position:center 40%"></div>
+            <div class="gallery-item"><img src="assets/1.jpeg" alt="" style="object-position:center 55%"></div>
+            <div class="gallery-item"><img src="assets/8.jpeg" alt="" style="object-position:center 30%"></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="location-section">
-        <div class="location-card-wrapper">
-            <img src="assets/ornate-frame-new-Dtm38pwt.png" alt="" class="location-frame-img">
-            <div class="location-card">
-                <h3 class="location-title">Məkan</h3>
-                <div style="margin-bottom:16px;">
-                    <p class="location-name">İmperial Garden</p>
-                    <div class="location-time"><span>15 İyun 2026<br>17:00</span></div>
+<!-- DIVIDER -->
+<div class="divider-section">
+    <div class="divider-line"></div>
+    <img src="assets/floral-vase-6x28LN74.png" alt="" class="divider-img">
+</div>
+
+<!-- COUNTDOWN -->
+<section class="countdown-section">
+    <h2 class="countdown-title">Geri sayım</h2>
+    <p class="countdown-subtitle">15 İyun 2026 qədər</p>
+    <div class="countdown-wrapper">
+        <div class="countdown-unit"><div class="countdown-block"><span class="countdown-number" id="days">--</span><span class="countdown-label">Gün</span></div><div class="countdown-divider"></div></div>
+        <div class="countdown-unit"><div class="countdown-block"><span class="countdown-number" id="hours">--</span><span class="countdown-label">Saat</span></div><div class="countdown-divider"></div></div>
+        <div class="countdown-unit"><div class="countdown-block"><span class="countdown-number" id="minutes">--</span><span class="countdown-label">Dəqiqə</span></div><div class="countdown-divider"></div></div>
+        <div class="countdown-unit"><div class="countdown-block"><span class="countdown-number" id="seconds">--</span><span class="countdown-label">Saniyə</span></div></div>
+    </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section">
+    <div class="location-card-wrapper">
+        <img src="assets/ornate-frame-new-Dtm38pwt.png" alt="" class="location-frame-img">
+        <div class="location-card">
+            <h3 class="location-title">Məkan</h3>
+            <div style="margin-bottom:16px;">
+                <p class="location-name">İmperial Garden</p>
+                <div class="location-time"><span>15 İyun 2026<br>17:00</span></div>
+            </div>
+            <img src="assets/imp.png" alt="Imperial Garden" class="location-illustration">
+        </div>
+    </div>
+</section>
+
+<!-- DRESSCODE -->
+<section class="dresscode-section">
+    <div class="dresscode-inner">
+        <div class="dresscode-header">
+            <h2 class="dresscode-title">Geyim</h2>
+            <p class="dresscode-subtitle">Yay aylarının möhtəşəm rəng çalarlarından istifadə etməyiniz xahiş olunur</p>
+        </div>
+        <div class="dresscode-body">
+            <img src="assets/dress-code-illustration-sBv8miCU.png" alt="" class="dresscode-illustration">
+            <div class="dresscode-card">
+                <h3 class="dresscode-card-title">Yay Zərifliyi</h3>
+                <p class="dresscode-card-text">Bu xüsusi günümüzdə sizin yay fəslinin canlı və gözəl rənglərini əks etdirən zərif geyimlərdə olmağınızı çox arzu edirik.</p>
+                <p class="dresscode-card-note">Gün ərzində bol rəqs və unudulmaz anlar olacaq, buna görə də hərəkət etməyə rahat imkan verən geyimlər seçməyiniz tövsiyə olunur.</p>
+                <p class="dresscode-card-note">Rahatlığınızı nəzərə alaraq, həm geyim, həm də ayaqqabı seçimində yüngül, komfortlu və sərbəst hərəkət etməyə imkan verən variantlara üstünlük verməyinizi xahiş edirik.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ORDER OF DAY -->
+<section class="order-section">
+    <div class="order-hero"><img src="assets/couple-dancing-XNVWWZw7.png" alt=""></div>
+    <div class="order-header">
+        <h2 class="order-title">Günün Planı</h2>
+        <p class="order-subtitle">Sizləri unudulmaz anlar gözləyir</p>
+    </div>
+    <div class="order-venue-wrapper" style="position:relative;overflow:hidden;">
+        <video autoplay muted loop playsinline style="display:block;width:100%;height:100%;object-fit:cover;">
+            <source src="assets/pl.mp4" type="video/mp4">
+        </video>
+        <div class="order-timeline-overlay">
+            <div class="order-timeline">
+                <div class="order-step"><div class="order-step-content"><p class="order-step-time">18:00</p><h3 class="order-step-title">Gəliş &amp; Qarşılama</h3></div></div>
+                <div class="order-connector"></div>
+                <div class="order-step"><div class="order-step-content"><h3 class="order-step-title">Şirinçay</h3></div></div>
+                <div class="order-connector"></div>
+                <div class="order-step"><div class="order-step-content"><h3 class="order-step-title">Üzüklərin Taxılması &amp; İlk Rəqs</h3></div></div>
+                <div class="order-connector"></div>
+                <div class="order-step"><div class="order-step-content"><h3 class="order-step-title">Rəqs &amp; Əyləncə</h3></div></div>
+                <div class="order-connector"></div>
+                <div class="order-step"><div class="order-step-content"><h3 class="order-step-title">Şəkillər &amp; Videolar</h3></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MEDIA -->
+<section class="media-section">
+    <img src="assets/entrada.png" alt="">
+    <p class="media-text">Ən gözəl anlarımızın şahidi olacağınız bu xüsusi gecədə, sizinlə birlikdə doyunca əylənmək və rəqs etmək üçün səbirsizlənirik.</p>
+    <div class="media-inner">
+        <div style="display:flex;justify-content:center;margin-bottom:clamp(16px,4vw,24px);">
+            <svg xmlns="http://www.w3.org/2000/svg" style="width:clamp(40px,10vw,56px);height:clamp(40px,10vw,56px);color:#4a5c4a;opacity:0.7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+        </div>
+        <h2 class="media-title">Xatirələrinizi bizimlə paylaşın ✨</h2>
+        <p class="media-text">Bu unudulmaz gecədən çəkəcəyiniz şəkil və videoları bizimlə paylaşaraq xatirələrimizi daha da gözəlləşdirə bilərsiniz.</p>
+        <div class="mt-8 flex flex-col items-center gap-4">
+            <input type="file" id="fileInput" accept="image/*,video/*" class="hidden">
+            <label for="fileInput" class="w-full max-w-md cursor-pointer rounded-2xl border-2 border-dashed border-[#D4AF37] bg-[#FCFAF5] px-6 py-6 text-center transition hover:scale-[1.02]">
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-3xl">📸</span>
+                    <span class="font-medium text-gray-700">Şəkil və ya Video əlavə et</span>
+                    <span class="text-sm text-gray-500">JPG, PNG, MP4, MOV və digər formatlar</span>
                 </div>
-                <img src="assets/imp.png" alt="Villa Montalcino" class="location-illustration">
-            </div>
+            </label>
+            <p id="selectedFile" class="max-w-md break-all text-center text-sm text-gray-500">Hələ heç bir fayl seçilməyib</p>
+            <button onclick="uploadToCloudinary()" class="rounded-full bg-[#D4AF37] px-8 py-3 font-medium text-white transition hover:opacity-90">Yüklə</button>
+            <div id="resultLink" class="text-center text-sm"></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="dresscode-section">
-        <div class="dresscode-inner">
-            <div class="dresscode-header">
-                <h2 class="dresscode-title">Geyim</h2>
-                <p class="dresscode-subtitle">Yay aylarının möhtəşəm rəng çalarlarından istifadə etməyiniz xahiş olunur</p>
-            </div>
-            <div class="dresscode-body">
-                <img src="assets/dress-code-illustration-sBv8miCU.png" alt="Zərif qonaqlar illüstrasiyası" class="dresscode-illustration">
-                <div class="dresscode-card">
-                    <h3 class="dresscode-card-title">Yay Zərifliyi</h3>
-                    <p class="dresscode-card-text">Bu xüsusi günümüzdə sizin yay fəslinin canlı və gözəl rənglərini əks etdirən zərif geyimlərdə olmağınızı çox arzu edirik.</p>
-                    <p class="dresscode-card-note">Gün ərzində bol rəqs və unudulmaz anlar olacaq, buna görə də hərəkət etməyə rahat imkan verən geyimlər seçməyiniz tövsiyə olunur.</p>
-                    <p class="dresscode-card-note">Rahatlığınızı nəzərə alaraq, həm geyim, həm də ayaqqabı seçimində yüngül, komfortlu və sərbəst hərəkət etməyə imkan verən variantlara üstünlük verməyinizi xahiş edirik.</p>
+<!-- COUPLE PHOTO -->
+<section class="couple-photo-section">
+    <img src="assets/13.jpeg" alt="Muraz & Gülnur">
+</section>
+
+<!-- ═══════════════════════════════
+     RSVP SECTION (pulse on scroll)
+═══════════════════════════════ -->
+<section class="rsvp-section" id="rsvp">
+    <!-- Gold top accent line -->
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#b49650 30%,#b49650 70%,transparent);"></div>
+
+    <div class="rsvp-inner">
+        <div class="rsvp-header">
+            <!-- Animated ring around the title -->
+            <div style="display:inline-block;position:relative;margin-bottom:16px;">
+                <div style="position:absolute;inset:-12px;border-radius:50%;border:1.5px solid rgba(180,150,80,0.4);animation:titleRing 2.4s ease-in-out infinite;"></div>
+                <div style="width:56px;height:56px;border-radius:50%;background:rgba(180,150,80,0.12);display:flex;align-items:center;justify-content:center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#b49650" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
                 </div>
             </div>
+            <style>@keyframes titleRing{0%,100%{transform:scale(1);opacity:0.5}50%{transform:scale(1.15);opacity:1}}</style>
+            <h2 class="rsvp-title">Təsdiq</h2>
+            <p class="rsvp-subtitle">Ümid edirik ki, bu xüsusi gündə bizimlə olacaqsınız</p>
         </div>
-    </section>
 
-    <section class="order-section">
-        <div class="order-hero"><img src="assets/couple-dancing-XNVWWZw7.png" alt="Couple dancing illustration"></div>
-        <div class="order-header">
-            <h2 class="order-title">Günün Planı</h2>
-            <p class="order-subtitle">Sizləri unudulmaz anlar gözləyir</p>
-        </div>
-        <div class="order-venue-wrapper" style="position:relative;overflow:hidden;">
-            <video autoplay muted loop playsinline class="order-venue-img" style="display:block;width:100%;height:100%;object-fit:cover;">
-                <source src="assets/pl.mp4" type="video/mp4">
-            </video>
-            <div class="order-timeline-overlay">
-                <div class="order-timeline">
-                    <div class="order-step"><div class="order-step-content"><p class="order-step-time">18:00</p><h3 class="order-step-title">Gəliş &amp; Qarşılama</h3></div></div>
-                    <div class="order-connector"></div>
-                    <div class="order-step"><div class="order-step-content"><h3 class="order-step-title">Şirinçay</h3></div></div>
-                    <div class="order-connector"></div>
-                    <div class="order-step"><div class="order-step-content"><h3 class="order-step-title">Üzüklərin Taxılması &amp; İlk Rəqs</h3></div></div>
-                    <div class="order-connector"></div>
-                    <div class="order-step"><div class="order-step-content"><h3 class="order-step-title">Rəqs &amp; Əyləncə</h3></div></div>
-                    <div class="order-connector"></div>
-                    <div class="order-step"><div class="order-step-content"><h3 class="order-step-title">Şəkillər &amp; Videolar</h3></div></div>
+        <form class="rsvp-form" action="https://formspree.io/f/mqenvvdp" method="POST">
+            <div class="rsvp-field">
+                <label class="rsvp-label">İştirak edəcəksiniz? *</label>
+                <div class="rsvp-radio-group">
+                    <div class="rsvp-radio-option"><input type="radio" id="attend-yes" name="attendance" value="Bəli, iştirak edəcəyəm" checked><label for="attend-yes">Bəli, iştirak edəcəyəm</label></div>
+                    <div class="rsvp-radio-option"><input type="radio" id="attend-no" name="attendance" value="Təəssüf ki, iştirak edə bilməyəcəyəm"><label for="attend-no">Təəssüf ki, iştirak edə bilməyəcəyəm</label></div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="media-section">
-        <img src="assets/entrada.png" alt="">
-        <p class="media-text">Ən gözəl anlarımızın şahidi olacağınız bu xüsusi gecədə, sizinlə birlikdə doyunca əylənmək və rəqs etmək üçün səbirsizlənirik. Hər musiqinin sədasında sizi səhnədə xoşbəxt və şən görmək, bu gecəni bizim üçün daha da mənalı və unudulmaz edəcək.</p>
-        <div class="media-inner">
-            <div class="media-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
-                    <circle cx="12" cy="13" r="3"></circle>
-                </svg>
-            </div>
-            <h2 class="media-title">Xatirələrinizi bizimlə paylaşın ✨</h2>
-            <p class="media-text">Bu unudulmaz gecədən çəkəcəyiniz şəkil və videoları bizimlə paylaşaraq xatirələrimizi daha da gözəlləşdirə bilərsiniz.</p>
-            <div class="mt-8 flex flex-col items-center gap-4">
-                <input type="file" id="fileInput" accept="image/*,video/*" class="hidden">
-                <label for="fileInput" class="w-full max-w-md cursor-pointer rounded-2xl border-2 border-dashed border-[#D4AF37] bg-[#FCFAF5] px-6 py-6 text-center transition hover:scale-[1.02]">
-                    <div class="flex flex-col items-center gap-2">
-                        <span class="text-3xl">📸</span>
-                        <span class="font-medium text-gray-700">Şəkil və ya Video əlavə et</span>
-                        <span class="text-sm text-gray-500">JPG, PNG, MP4, MOV və digər formatlar</span>
-                    </div>
+            <div class="rsvp-field" id="guest-count-field">
+                <label class="rsvp-label" for="rsvp-guests">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    Neçə nəfər iştirak edəcəksiniz? *
                 </label>
-                <p id="selectedFile" class="max-w-md break-all text-center text-sm text-gray-500">Hələ heç bir fayl seçilməyib</p>
-                <button onclick="uploadToCloudinary()" class="rounded-full bg-[#D4AF37] px-8 py-3 font-medium text-white transition hover:opacity-90">Yüklə</button>
-                <div id="resultLink" class="text-center text-sm"></div>
+                <div class="rsvp-guest-counter">
+                    <button type="button" class="counter-btn" id="decrease-btn" onclick="changeGuests(-1)">−</button>
+                    <input class="rsvp-input counter-input" type="number" id="rsvp-guests" name="istirakci_sayi" value="1" min="1" max="10" required readonly>
+                    <button type="button" class="counter-btn" id="increase-btn" onclick="changeGuests(1)">+</button>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <section class="couple-photo-section">
-        <img src="assets/13.jpeg" alt="Muraz & Gülnur">
-    </section>
-
-    <section class="rsvp-section" id="rsvp">
-        <div class="rsvp-inner">
-            <div class="rsvp-header">
-                <h2 class="rsvp-title">Təsdiq</h2>
-                <p class="rsvp-subtitle">Ümid edirik ki, bu xüsusi gündə bizimlə olacaqsınız</p>
+            <div class="rsvp-field">
+                <label class="rsvp-label" for="rsvp-name">Ad və Soyad *</label>
+                <input class="rsvp-input" type="text" id="rsvp-name" name="ad_soyad" required placeholder="Ad və soyadınızı daxil edin" maxlength="100">
             </div>
-            <form class="rsvp-form" action="https://formspree.io/f/mqenvvdp" method="POST">
-                <div class="rsvp-field">
-                    <label class="rsvp-label">İştirak edəcəksiniz? *</label>
-                    <div class="rsvp-radio-group">
-                        <div class="rsvp-radio-option"><input type="radio" id="attend-yes" name="attendance" value="Bəli, iştirak edəcəyəm" checked><label for="attend-yes">Bəli, iştirak edəcəyəm</label></div>
-                        <div class="rsvp-radio-option"><input type="radio" id="attend-no" name="attendance" value="Təəssüf ki, iştirak edə bilməyəcəyəm"><label for="attend-no">Təəssüf ki, iştirak edə bilməyəcəyəm</label></div>
-                    </div>
-                </div>
-                <div class="rsvp-field" id="guest-count-field">
-                    <label class="rsvp-label" for="rsvp-guests">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                        Neçə nəfər iştirak edəcəksiniz? *
-                    </label>
-                    <div class="rsvp-guest-counter">
-                        <button type="button" class="counter-btn" id="decrease-btn" onclick="changeGuests(-1)">−</button>
-                        <input class="rsvp-input counter-input" type="number" id="rsvp-guests" name="istirakci_sayi" value="1" min="1" max="10" required readonly>
-                        <button type="button" class="counter-btn" id="increase-btn" onclick="changeGuests(1)">+</button>
-                    </div>
-                </div>
-                <div class="rsvp-field">
-                    <label class="rsvp-label" for="rsvp-name">Ad və Soyad *</label>
-                    <input class="rsvp-input" type="text" id="rsvp-name" name="ad_soyad" required placeholder="Ad və soyadınızı daxil edin" maxlength="100">
-                </div>
-                <div class="rsvp-field">
-                    <label class="rsvp-label" for="rsvp-song">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
-                        Eşitmək istədiyiniz mahnı
-                    </label>
-                    <input class="rsvp-input" type="text" id="rsvp-song" name="mahni" placeholder="Məsələn: Viva la Vida - Coldplay" maxlength="200">
-                </div>
-                <div class="rsvp-field">
-                    <label class="rsvp-label" for="rsvp-message">Bizim üçün mesajınız (istəyə bağlı)</label>
-                    <textarea class="rsvp-textarea" id="rsvp-message" name="mesaj" placeholder="Bizə bir neçə xoş söz yazın..." rows="3" maxlength="1000"></textarea>
-                </div>
-                <button type="submit" class="rsvp-submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
-                    Təsdiqi göndər
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <div class="footer-ornament-section">
-        <p class="footer-ornament-names">Muraz &amp; Gülnur</p>
-        <p class="footer-ornament-date">İyun 15, 2026</p>
-        <img src="assets/footer-ornament-doM17sdI.png" alt="Ornament" class="ornament">
+            <div class="rsvp-field">
+                <label class="rsvp-label" for="rsvp-song">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                    Eşitmək istədiyiniz mahnı
+                </label>
+                <input class="rsvp-input" type="text" id="rsvp-song" name="mahni" placeholder="Məsələn: Viva la Vida - Coldplay" maxlength="200">
+            </div>
+            <div class="rsvp-field">
+                <label class="rsvp-label" for="rsvp-message">Bizim üçün mesajınız (istəyə bağlı)</label>
+                <textarea class="rsvp-textarea" id="rsvp-message" name="mesaj" placeholder="Bizə bir neçə xoş söz yazın..." rows="3" maxlength="1000"></textarea>
+            </div>
+            <button type="submit" class="rsvp-submit">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+                Təsdiqi göndər
+            </button>
+        </form>
     </div>
+</section>
 
-    <style>
-        .rsvp-guest-counter { display:flex; align-items:center; gap:12px; }
-        .counter-btn { width:40px;height:40px;border-radius:50%;border:2px solid currentColor;background:transparent;font-size:1.4rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,color 0.2s; }
-        .counter-btn:hover { background:rgba(0,0,0,0.08); }
-        .counter-btn:disabled { opacity:0.35; cursor:not-allowed; }
-        .counter-input { width:70px;text-align:center;font-size:1.1rem;font-weight:600;-moz-appearance:textfield; }
-        .counter-input::-webkit-outer-spin-button,.counter-input::-webkit-inner-spin-button { -webkit-appearance:none;margin:0; }
-    </style>
+<!-- FOOTER -->
+<div class="footer-ornament-section">
+    <p class="footer-ornament-names">Muraz &amp; Gülnur</p>
+    <p class="footer-ornament-date">İyun 15, 2026</p>
+    <img src="assets/footer-ornament-doM17sdI.png" alt="Ornament" class="ornament">
+</div>
 
-    <audio id="bg-music" loop><source src="./assets/music.mp3" type="audio/mpeg"></audio>
+<!-- ═══════════════════════════════
+     STICKY BANNER
+═══════════════════════════════ -->
+<div id="rsvp-sticky">
+    <div class="sticky-text">
+        <strong>Orada olacaqsınız?</strong>
+        Zəhmət olmasa təsdiq edin
+    </div>
+    <button class="sticky-btn" onclick="scrollToRsvp()">Təsdiq et ✉</button>
+</div>
 
-    <button id="music-btn" onclick="toggleMusic()" aria-label="Səsi aç/bağla"
-        style="position:fixed;bottom:24px;right:24px;z-index:50;width:48px;height:48px;border-radius:50%;background:rgba(74,92,74,0.9);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(74,92,74,0.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background 0.2s,transform 0.15s;"
-        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-        <svg id="icon-muted" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path>
-            <line x1="22" x2="16" y1="9" y2="15"></line><line x1="16" x2="22" y1="9" y2="15"></line>
-        </svg>
-        <svg id="icon-unmuted" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-            <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-        </svg>
+<!-- ═══════════════════════════════
+     FLOATING BADGE (sol alt)
+═══════════════════════════════ -->
+<div id="rsvp-fab">
+    <button class="fab-btn" onclick="scrollToRsvp()" aria-label="RSVP">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
     </button>
+    <span class="fab-label">Təsdiq et</span>
+</div>
 
-    <button id="scroll-arrow" onclick="window.scrollBy({top:window.innerHeight,behavior:'smooth'})" aria-label="Aşağı get"
-        style="position:fixed;bottom:84px;right:24px;z-index:50;width:48px;height:48px;border-radius:50%;background:rgba(74,92,74,0.9);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(74,92,74,0.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:opacity 0.5s,transform 0.15s;"
-        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:arrowMove 0.8s ease-in-out infinite;">
-            <line x1="12" y1="5" x2="12" y2="19"></line><polyline points="6 13 12 19 18 13"></polyline>
-        </svg>
-    </button>
-    <style>
-        @keyframes arrowMove { 0% { transform:translateY(-3px);opacity:0.5; } 50% { transform:translateY(3px);opacity:1; } 100% { transform:translateY(-3px);opacity:0.5; } }
-    </style>
+<!-- MUSIC -->
+<audio id="bg-music" loop><source src="./assets/music.mp3" type="audio/mpeg"></audio>
+<button id="music-btn" onclick="toggleMusic()" aria-label="Səsi aç/bağla"
+    style="position:fixed;bottom:150px;right:24px;z-index:50;width:48px;height:48px;border-radius:50%;background:rgba(74,92,74,0.9);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(74,92,74,0.35);backdrop-filter:blur(6px);transition:background 0.2s,transform 0.15s;"
+    onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <svg id="icon-muted" xmlns="http://www.w3.org/2000/svg"  width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path>
+        <line x1="22" x2="16" y1="9" y2="15"></line><line x1="16" x2="22" y1="9" y2="15"></line>
+    </svg>
+    <svg id="icon-unmuted" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+        <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+    </svg>
+</button>
 
-    <script>
-        // Countdown
-        function updateCountdown() {
-            var target = new Date('2026-06-15T18:00:00'), diff = target - new Date();
-            if (diff <= 0) { ['days','hours','minutes','seconds'].forEach(function(id){ document.getElementById(id).textContent = id==='days'?'0':'00'; }); return; }
-            document.getElementById('days').textContent = Math.floor(diff/864e5);
-            document.getElementById('hours').textContent = String(Math.floor((diff%864e5)/36e5)).padStart(2,'0');
-            document.getElementById('minutes').textContent = String(Math.floor((diff%36e5)/6e4)).padStart(2,'0');
-            document.getElementById('seconds').textContent = String(Math.floor((diff%6e4)/1e3)).padStart(2,'0');
-        }
-        updateCountdown(); setInterval(updateCountdown, 1000);
+<!-- SCROLL ARROW -->
+<button id="scroll-arrow" onclick="window.scrollBy({top:window.innerHeight,behavior:'smooth'})" aria-label="Aşağı get"
+    style="position:fixed;bottom:84px;right:24px;z-index:50;width:48px;height:48px;border-radius:50%;background:rgba(74,92,74,0.9);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(74,92,74,0.35);backdrop-filter:blur(6px);transition:opacity 0.5s,transform 0.15s;"
+    onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:arrowMove 0.8s ease-in-out infinite;">
+        <line x1="12" y1="5" x2="12" y2="19"></line><polyline points="6 13 12 19 18 13"></polyline>
+    </svg>
+</button>
+<style>@keyframes arrowMove{0%{transform:translateY(-3px);opacity:0.5}50%{transform:translateY(3px);opacity:1}100%{transform:translateY(-3px);opacity:0.5}}</style>
 
-        // File upload
-        document.getElementById("fileInput").addEventListener("change", function() {
-            var f = this.files[0];
-            document.getElementById("selectedFile").textContent = f ? "Seçilən fayl: "+f.name : "Hələ heç bir fayl seçilməyib";
+<script>
+    // ── Countdown ──
+    function updateCountdown() {
+        var target = new Date('2026-06-15T18:00:00'), diff = target - new Date();
+        if (diff <= 0) { ['days','hours','minutes','seconds'].forEach(function(id){ document.getElementById(id).textContent = id==='days'?'0':'00'; }); return; }
+        document.getElementById('days').textContent = Math.floor(diff/864e5);
+        document.getElementById('hours').textContent = String(Math.floor((diff%864e5)/36e5)).padStart(2,'0');
+        document.getElementById('minutes').textContent = String(Math.floor((diff%36e5)/6e4)).padStart(2,'0');
+        document.getElementById('seconds').textContent = String(Math.floor((diff%6e4)/1e3)).padStart(2,'0');
+    }
+    updateCountdown(); setInterval(updateCountdown, 1000);
+
+    // ── File upload ──
+    document.getElementById("fileInput").addEventListener("change", function() {
+        var f = this.files[0];
+        document.getElementById("selectedFile").textContent = f ? "Seçilən fayl: " + f.name : "Hələ heç bir fayl seçilməyib";
+    });
+    async function uploadToCloudinary() {
+        var file = document.getElementById("fileInput").files[0];
+        if (!file) { alert("Şəkil və ya video seçin"); return; }
+        var fd = new FormData(); fd.append("file", file); fd.append("upload_preset","site_uploads");
+        try {
+            var r = await fetch("https://api.cloudinary.com/v1_1/dkrftwljj/auto/upload",{method:"POST",body:fd});
+            var d = await r.json();
+            if (d.error) { alert(d.error.message); return; }
+            document.getElementById("resultLink").innerHTML = '<p style="color:#4a5c4a;font-weight:600;">✅ Uğurla yükləndi!</p>';
+        } catch(e) { alert("Yükləmə zamanı xəta baş verdi"); }
+    }
+
+    // ── RSVP counter ──
+    function changeGuests(delta) {
+        var input = document.getElementById('rsvp-guests'), min = parseInt(input.min), max = parseInt(input.max);
+        var val = Math.max(min, Math.min(max, parseInt(input.value)+delta));
+        input.value = val;
+        document.getElementById('decrease-btn').disabled = val<=min;
+        document.getElementById('increase-btn').disabled = val>=max;
+    }
+    document.querySelectorAll('input[name="attendance"]').forEach(function(r){
+        r.addEventListener('change', function(){
+            var f = document.getElementById('guest-count-field'), g = document.getElementById('rsvp-guests');
+            if (this.value.startsWith('Bəli')) { f.style.display=''; g.required=true; }
+            else { f.style.display='none'; g.required=false; }
         });
-        async function uploadToCloudinary() {
-            var file = document.getElementById("fileInput").files[0];
-            if (!file) { alert("Şəkil və ya video seçin"); return; }
-            var fd = new FormData(); fd.append("file", file); fd.append("upload_preset","site_uploads");
-            try {
-                var r = await fetch("https://api.cloudinary.com/v1_1/dkrftwljj/auto/upload",{method:"POST",body:fd});
-                var d = await r.json();
-                if (d.error) { alert(d.error.message); return; }
-                document.getElementById("resultLink").innerHTML = '<p class="text-green-600 font-medium">✅ Uğurla yükləndi!</p>';
-            } catch(e) { console.error(e); alert("Yükləmə zamanı xəta baş verdi"); }
+    });
+    document.getElementById('decrease-btn').disabled = true;
+
+    // ── Scroll to RSVP ──
+    function scrollToRsvp() {
+        var el = document.getElementById('rsvp');
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // pulse effect
+        el.classList.remove('highlight');
+        void el.offsetWidth;
+        el.classList.add('highlight');
+        setTimeout(function(){ el.classList.remove('highlight'); }, 6000);
+    }
+
+    // ── Sticky banner + FAB visibility logic ──
+    var rsvpSection = document.getElementById('rsvp');
+    var stickyBanner = document.getElementById('rsvp-sticky');
+    var fab = document.getElementById('rsvp-fab');
+    var rsvpPassed = false;
+    var rsvpInView = false;
+
+   function updateRsvpUI() {
+        var rect = rsvpSection.getBoundingClientRect();
+        var winH = window.innerHeight;
+
+        // Is RSVP section currently visible in viewport?
+        rsvpInView = rect.top < winH && rect.bottom > 0;
+
+        // Show banner/FAB at all times EXCEPT when RSVP is on screen
+        if (rsvpInView) {
+            stickyBanner.classList.remove('visible');
+            fab.classList.remove('visible');
+        } else {
+            stickyBanner.classList.add('visible');
+            fab.classList.add('visible');
         }
+    }
+    window.addEventListener('scroll', updateRsvpUI, { passive: true });
+    window.addEventListener('resize', updateRsvpUI, { passive: true });
+    // Show banner immediately on load
+    updateRsvpUI();
 
-        // RSVP counter
-        function changeGuests(delta) {
-            var input = document.getElementById('rsvp-guests'), min = parseInt(input.min), max = parseInt(input.max);
-            var val = Math.max(min, Math.min(max, parseInt(input.value)+delta));
-            input.value = val;
-            document.getElementById('decrease-btn').disabled = val<=min;
-            document.getElementById('increase-btn').disabled = val>=max;
-        }
-        document.querySelectorAll('input[name="attendance"]').forEach(function(r){
-            r.addEventListener('change', function(){
-                var f = document.getElementById('guest-count-field'), g = document.getElementById('rsvp-guests');
-                if (this.value.startsWith('Bəli')) { f.style.display=''; g.required=true; }
-                else { f.style.display='none'; g.required=false; }
-            });
-        });
-        document.getElementById('decrease-btn').disabled = true;
-
-        // Music
-        var isMuted = false, music = document.getElementById("bg-music");
-        music.volume = 0.5;
-        window.addEventListener("load", async function() {
-            try { await music.play(); isMuted=false; document.getElementById('icon-muted').style.display='none'; document.getElementById('icon-unmuted').style.display='block'; }
-            catch(e) { isMuted=true; }
-        });
-        function toggleMusic() {
-            if (isMuted) { music.play().catch(function(){}); document.getElementById('icon-muted').style.display='none'; document.getElementById('icon-unmuted').style.display='block'; isMuted=false; }
-            else { music.pause(); document.getElementById('icon-muted').style.display='block'; document.getElementById('icon-unmuted').style.display='none'; isMuted=true; }
-        }
-
-        // Scroll arrow
-        window.addEventListener('scroll', function() {
-            var arrow = document.getElementById('scroll-arrow'), s = window.scrollY;
-            if (s>300) { arrow.style.opacity='0'; arrow.style.pointerEvents='none'; }
-            else { arrow.style.opacity=String(1-s/300); arrow.style.pointerEvents='auto'; }
-        });
-
-        // PAGE LOADER — hide after minimum 2.2s + page load
-        (function() {
-            var loader = document.getElementById('page-loader');
-            var minDelay = 2200, startTime = Date.now();
-            function hideLoader() { loader.classList.add('hidden'); }
-            function tryHide() {
-                var remaining = Math.max(0, minDelay - (Date.now()-startTime));
-                setTimeout(hideLoader, remaining);
+    // ── Pulse glow when RSVP scrolls into view (once) ──
+    var rsvpHighlighted = false;
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting && !rsvpHighlighted) {
+                rsvpHighlighted = true;
+                var el = entry.target;
+                el.classList.add('highlight');
+                setTimeout(function(){ el.classList.remove('highlight'); }, 6000);
             }
-            if (document.readyState === 'complete') { tryHide(); }
-            else { window.addEventListener('load', tryHide); setTimeout(hideLoader, 5000); }
-        })();
-    </script>
+        });
+    }, { threshold: 0.2 });
+    observer.observe(rsvpSection);
+
+    // ── Music ──
+    var isMuted = false, music = document.getElementById("bg-music");
+    music.volume = 0.5;
+    window.addEventListener("load", async function() {
+        try { await music.play(); isMuted=false; document.getElementById('icon-muted').style.display='none'; document.getElementById('icon-unmuted').style.display='block'; }
+        catch(e) { isMuted=true; }
+    });
+    function toggleMusic() {
+        if (isMuted) { music.play().catch(function(){}); document.getElementById('icon-muted').style.display='none'; document.getElementById('icon-unmuted').style.display='block'; isMuted=false; }
+        else { music.pause(); document.getElementById('icon-muted').style.display='block'; document.getElementById('icon-unmuted').style.display='none'; isMuted=true; }
+    }
+
+    // ── Page loader ──
+    (function() {
+        var loader = document.getElementById('page-loader');
+        var minDelay = 2200, startTime = Date.now();
+        function hideLoader() { loader.classList.add('hidden'); }
+        function tryHide() { setTimeout(hideLoader, Math.max(0, minDelay-(Date.now()-startTime))); }
+        if (document.readyState === 'complete') { tryHide(); }
+        else { window.addEventListener('load', tryHide); setTimeout(hideLoader, 5000); }
+    })();
+</script>
 </body>
 </html>
